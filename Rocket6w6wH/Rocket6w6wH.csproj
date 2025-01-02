@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\packages\EntityFramework.6.5.1\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.5.1\build\EntityFramework.props')" />
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
   <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -47,10 +47,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.5.1\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.5.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Google.Apis, Version=1.68.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
       <HintPath>..\packages\Google.Apis.1.68.0\lib\net462\Google.Apis.dll</HintPath>
@@ -228,56 +228,37 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\CitiesController.cs" />
+    <Compile Include="Controllers\Comment.cs" />
     <Compile Include="Controllers\ConfigsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SearchConditionsController.cs" />
-    <Compile Include="Controllers\StoresController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202412230525024_StoreStars.cs" />
-    <Compile Include="Migrations\202412230525024_StoreStars.Designer.cs">
-      <DependentUpon>202412230525024_StoreStars.cs</DependentUpon>
+    <Compile Include="Migrations\202412300500498_CRSO.cs" />
+    <Compile Include="Migrations\202412300500498_CRSO.Designer.cs">
+      <DependentUpon>202412300500498_CRSO.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202412230531546_Stars.cs" />
-    <Compile Include="Migrations\202412230531546_Stars.Designer.cs">
-      <DependentUpon>202412230531546_Stars.cs</DependentUpon>
+    <Compile Include="Migrations\202412300643314_SAMACA.cs" />
+    <Compile Include="Migrations\202412300643314_SAMACA.Designer.cs">
+      <DependentUpon>202412300643314_SAMACA.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202412230534419_StoreComments.cs" />
-    <Compile Include="Migrations\202412230534419_StoreComments.Designer.cs">
-      <DependentUpon>202412230534419_StoreComments.cs</DependentUpon>
+    <Compile Include="Migrations\202412301556371_CCPT.cs" />
+    <Compile Include="Migrations\202412301556371_CCPT.Designer.cs">
+      <DependentUpon>202412301556371_CCPT.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202412230600210_Configs.cs" />
-    <Compile Include="Migrations\202412230600210_Configs.Designer.cs">
-      <DependentUpon>202412230600210_Configs.cs</DependentUpon>
+    <Compile Include="Migrations\202501020310134_AddLabel.cs" />
+    <Compile Include="Migrations\202501020310134_AddLabel.Designer.cs">
+      <DependentUpon>202501020310134_AddLabel.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202412230736458_SearchCondition.cs" />
-    <Compile Include="Migrations\202412230736458_SearchCondition.Designer.cs">
-      <DependentUpon>202412230736458_SearchCondition.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202412240332522_MemberAddName.cs" />
-    <Compile Include="Migrations\202412240332522_MemberAddName.Designer.cs">
-      <DependentUpon>202412240332522_MemberAddName.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202412240442279_City.cs" />
-    <Compile Include="Migrations\202412240442279_City.Designer.cs">
-      <DependentUpon>202412240442279_City.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202412240446243_CountryName.cs" />
-    <Compile Include="Migrations\202412240446243_CountryName.Designer.cs">
-      <DependentUpon>202412240446243_CountryName.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202412260410304_updatestore.cs" />
-    <Compile Include="Migrations\202412260410304_updatestore.Designer.cs">
-      <DependentUpon>202412260410304_updatestore.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202412260423101_StorePictures.cs" />
-    <Compile Include="Migrations\202412260423101_StorePictures.Designer.cs">
-      <DependentUpon>202412260423101_StorePictures.cs</DependentUpon>
+    <Compile Include="Migrations\202501020314221_AddLabel02.cs" />
+    <Compile Include="Migrations\202501020314221_AddLabel02.Designer.cs">
+      <DependentUpon>202501020314221_AddLabel02.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\City.cs" />
+    <Compile Include="Models\CommentPictures.cs" />
     <Compile Include="Models\Configs.cs" />
     <Compile Include="Models\Member.cs" />
     <Compile Include="Models\Model.cs" />
@@ -286,6 +267,7 @@
     <Compile Include="Models\StorePictures.cs" />
     <Compile Include="Models\Stores.cs" />
     <Compile Include="Models\StoreStars.cs" />
+    <Compile Include="OftenUseClass01.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Security\JwtAuthFilter.cs" />
     <Compile Include="Security\JwtAuthUtil.cs" />
@@ -437,35 +419,20 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202412230525024_StoreStars.resx">
-      <DependentUpon>202412230525024_StoreStars.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202412300500498_CRSO.resx">
+      <DependentUpon>202412300500498_CRSO.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202412230531546_Stars.resx">
-      <DependentUpon>202412230531546_Stars.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202412300643314_SAMACA.resx">
+      <DependentUpon>202412300643314_SAMACA.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202412230534419_StoreComments.resx">
-      <DependentUpon>202412230534419_StoreComments.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202412301556371_CCPT.resx">
+      <DependentUpon>202412301556371_CCPT.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202412230600210_Configs.resx">
-      <DependentUpon>202412230600210_Configs.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202501020310134_AddLabel.resx">
+      <DependentUpon>202501020310134_AddLabel.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202412230736458_SearchCondition.resx">
-      <DependentUpon>202412230736458_SearchCondition.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202412240332522_MemberAddName.resx">
-      <DependentUpon>202412240332522_MemberAddName.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202412240442279_City.resx">
-      <DependentUpon>202412240442279_City.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202412240446243_CountryName.resx">
-      <DependentUpon>202412240446243_CountryName.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202412260410304_updatestore.resx">
-      <DependentUpon>202412260410304_updatestore.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202412260423101_StorePictures.resx">
-      <DependentUpon>202412260423101_StorePictures.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202501020314221_AddLabel02.resx">
+      <DependentUpon>202501020314221_AddLabel02.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
@@ -501,10 +468,10 @@
       <ErrorText>此專案參考這部電腦上所缺少的 NuGet 套件。請啟用 NuGet 套件還原，以下載該套件。如需詳細資訊，請參閱 http://go.microsoft.com/fwlink/?LinkID=322105。缺少的檔案是 {0}。</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
-    <Error Condition="!Exists('..\packages\EntityFramework.6.5.1\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.5.1\build\EntityFramework.props'))" />
-    <Error Condition="!Exists('..\packages\EntityFramework.6.5.1\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.5.1\build\EntityFramework.targets'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
   </Target>
-  <Import Project="..\packages\EntityFramework.6.5.1\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.5.1\build\EntityFramework.targets')" />
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

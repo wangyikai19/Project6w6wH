@@ -38,5 +38,7 @@ namespace Rocket6w6wH.Models
         public DateTime? CreateTime { get; set; }
 
         public DateTime? ModifyTime { get; set; }
+
+        public virtual ICollection<StoreComments> StoreComments { get; set; }
     }
 }

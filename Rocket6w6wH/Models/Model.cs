@@ -20,7 +20,7 @@ namespace Rocket6w6wH.Models
         public virtual DbSet<SearchCondition> SearchCondition { get; set; }
         public virtual DbSet<City> City { get; set; }
         public virtual DbSet<StorePictures> StorePictures { get; set; }
-
+        public virtual DbSet<CommentPictures> CommentPictures { get; set; }
 
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
