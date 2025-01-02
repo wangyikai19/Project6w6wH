@@ -228,6 +228,7 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\CitiesController.cs" />
+    <Compile Include="Controllers\CommentController.cs" />
     <Compile Include="Controllers\ConfigsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SearchConditionsController.cs" />
@@ -280,8 +281,13 @@
     <Compile Include="Migrations\202501020310567_storeaddtags.Designer.cs">
       <DependentUpon>202501020310567_storeaddtags.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202501020640115_commit.cs" />
+    <Compile Include="Migrations\202501020640115_commit.Designer.cs">
+      <DependentUpon>202501020640115_commit.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\City.cs" />
+    <Compile Include="Models\CommentPictures.cs" />
     <Compile Include="Models\Configs.cs" />
     <Compile Include="Models\Member.cs" />
     <Compile Include="Models\Model.cs" />
@@ -473,6 +479,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202501020310567_storeaddtags.resx">
       <DependentUpon>202501020310567_storeaddtags.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202501020640115_commit.resx">
+      <DependentUpon>202501020640115_commit.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

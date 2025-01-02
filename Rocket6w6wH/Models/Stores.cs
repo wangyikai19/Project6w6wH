@@ -39,5 +39,6 @@ namespace Rocket6w6wH.Models
 
         public DateTime? ModifyTime { get; set; }
         public string StoreTags { get; set; }
+        public virtual ICollection<StoreComments> StoreComments { get; set; }
     }
 }

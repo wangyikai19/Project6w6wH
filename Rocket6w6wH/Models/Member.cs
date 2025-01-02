@@ -15,8 +15,9 @@ namespace Rocket6w6wH.Models
         [StringLength(50)]
         public string Email { get; set; }
         public string Name { get; set; }
+        public string MemberPictureUrl { get; set; }
         // 導航屬性 - 一對多關係
-       
+
         public virtual ICollection<StoreComments> StoreComments { get; set; }
     }
 }
