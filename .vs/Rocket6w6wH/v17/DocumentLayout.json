@@ -3,6 +3,14 @@
   "WorkspaceRootPath": "C:\\Users\\HP\\Desktop\\\u706B\u7BAD\u968A-backend\\Rocket6w6wH\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{F457148B-291B-4F16-9BA8-8B62519F6031}|Rocket6w6wH\\Rocket6w6wH.csproj|c:\\users\\hp\\desktop\\\u706B\u7BAD\u968A-backend\\rocket6w6wh\\rocket6w6wh\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{F457148B-291B-4F16-9BA8-8B62519F6031}|Rocket6w6wH\\Rocket6w6wH.csproj|solutionrelative:rocket6w6wh\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F457148B-291B-4F16-9BA8-8B62519F6031}|Rocket6w6wH\\Rocket6w6wH.csproj|C:\\Users\\HP\\Desktop\\\u706B\u7BAD\u968A-backend\\Rocket6w6wH\\rocket6w6wh\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F457148B-291B-4F16-9BA8-8B62519F6031}|Rocket6w6wH\\Rocket6w6wH.csproj|solutionrelative:rocket6w6wh\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{F457148B-291B-4F16-9BA8-8B62519F6031}|Rocket6w6wH\\Rocket6w6wH.csproj|C:\\Users\\HP\\Desktop\\\u706B\u7BAD\u968A-backend\\Rocket6w6wH\\rocket6w6wh\\models\\member.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F457148B-291B-4F16-9BA8-8B62519F6031}|Rocket6w6wH\\Rocket6w6wH.csproj|solutionrelative:rocket6w6wh\\models\\member.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -23,28 +31,12 @@
       "RelativeMoniker": "D:0:0:{F457148B-291B-4F16-9BA8-8B62519F6031}|Rocket6w6wH\\Rocket6w6wH.csproj|solutionrelative:rocket6w6wh\\migrations\\configuration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F457148B-291B-4F16-9BA8-8B62519F6031}|Rocket6w6wH\\Rocket6w6wH.csproj|C:\\Users\\HP\\Desktop\\\u706B\u7BAD\u968A-backend\\Rocket6w6wH\\rocket6w6wh\\migrations\\202412300759082_storecommentaddstar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F457148B-291B-4F16-9BA8-8B62519F6031}|Rocket6w6wH\\Rocket6w6wH.csproj|solutionrelative:rocket6w6wh\\migrations\\202412300759082_storecommentaddstar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F457148B-291B-4F16-9BA8-8B62519F6031}|Rocket6w6wH\\Rocket6w6wH.csproj|C:\\Users\\HP\\Desktop\\\u706B\u7BAD\u968A-backend\\Rocket6w6wH\\rocket6w6wh\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F457148B-291B-4F16-9BA8-8B62519F6031}|Rocket6w6wH\\Rocket6w6wH.csproj|solutionrelative:rocket6w6wh\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F457148B-291B-4F16-9BA8-8B62519F6031}|Rocket6w6wH\\Rocket6w6wH.csproj|c:\\users\\hp\\desktop\\\u706B\u7BAD\u968A-backend\\rocket6w6wh\\rocket6w6wh\\controllers\\storescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F457148B-291B-4F16-9BA8-8B62519F6031}|Rocket6w6wH\\Rocket6w6wH.csproj|solutionrelative:rocket6w6wh\\controllers\\storescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{F457148B-291B-4F16-9BA8-8B62519F6031}|Rocket6w6wH\\Rocket6w6wH.csproj|C:\\Users\\HP\\Desktop\\\u706B\u7BAD\u968A-backend\\Rocket6w6wH\\rocket6w6wh\\controllers\\valuescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F457148B-291B-4F16-9BA8-8B62519F6031}|Rocket6w6wH\\Rocket6w6wH.csproj|solutionrelative:rocket6w6wh\\controllers\\valuescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{F457148B-291B-4F16-9BA8-8B62519F6031}|Rocket6w6wH\\Rocket6w6wH.csproj|C:\\Users\\HP\\Desktop\\\u706B\u7BAD\u968A-backend\\Rocket6w6wH\\rocket6w6wh\\global.asax.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F457148B-291B-4F16-9BA8-8B62519F6031}|Rocket6w6wH\\Rocket6w6wH.csproj|solutionrelative:rocket6w6wh\\global.asax.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F457148B-291B-4F16-9BA8-8B62519F6031}|Rocket6w6wH\\Rocket6w6wH.csproj|C:\\Users\\HP\\Desktop\\\u706B\u7BAD\u968A-backend\\Rocket6w6wH\\rocket6w6wh\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
-      "RelativeMoniker": "D:0:0:{F457148B-291B-4F16-9BA8-8B62519F6031}|Rocket6w6wH\\Rocket6w6wH.csproj|solutionrelative:rocket6w6wh\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{F457148B-291B-4F16-9BA8-8B62519F6031}|Rocket6w6wH\\Rocket6w6wH.csproj|C:\\Users\\HP\\Desktop\\\u706B\u7BAD\u968A-backend\\Rocket6w6wH\\rocket6w6wh\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -58,19 +50,20 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 8,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "StoresController.cs",
-              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\\u706B\u7BAD\u968A-backend\\Rocket6w6wH\\Rocket6w6wH\\Controllers\\StoresController.cs",
-              "RelativeDocumentMoniker": "Rocket6w6wH\\Controllers\\StoresController.cs",
-              "ToolTip": "C:\\Users\\HP\\Desktop\\\u706B\u7BAD\u968A-backend\\Rocket6w6wH\\Rocket6w6wH\\Controllers\\StoresController.cs",
-              "RelativeToolTip": "Rocket6w6wH\\Controllers\\StoresController.cs",
-              "ViewState": "AgIAALAAAAAAAAAAAAAiwMUAAAANAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-30T03:55:45.482Z",
+              "DocumentIndex": 0,
+              "Title": "Web.config",
+              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\\u706B\u7BAD\u968A-backend\\Rocket6w6wH\\Rocket6w6wH\\Web.config",
+              "RelativeDocumentMoniker": "Rocket6w6wH\\Web.config",
+              "ToolTip": "C:\\Users\\HP\\Desktop\\\u706B\u7BAD\u968A-backend\\Rocket6w6wH\\Rocket6w6wH\\Web.config",
+              "RelativeToolTip": "Rocket6w6wH\\Web.config",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAAPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
+              "WhenOpened": "2024-12-19T07:49:31.239Z",
+              "IsPinned": true,
               "EditorCaption": ""
             },
             {
@@ -79,33 +72,19 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 1,
               "Title": "AuthController.cs",
               "DocumentMoniker": "C:\\Users\\HP\\Desktop\\\u706B\u7BAD\u968A-backend\\Rocket6w6wH\\Rocket6w6wH\\Controllers\\AuthController.cs",
               "RelativeDocumentMoniker": "Rocket6w6wH\\Controllers\\AuthController.cs",
               "ToolTip": "C:\\Users\\HP\\Desktop\\\u706B\u7BAD\u968A-backend\\Rocket6w6wH\\Rocket6w6wH\\Controllers\\AuthController.cs",
               "RelativeToolTip": "Rocket6w6wH\\Controllers\\AuthController.cs",
-              "ViewState": "AgIAAAsAAAAAAAAAAAAAABsAAAAhAAAAAAAAAA==",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAAABIAAAAZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-31T04:48:47.953Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-12-31T04:48:47.953Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "202412300759082_storecommentaddstar.cs",
-              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\\u706B\u7BAD\u968A-backend\\Rocket6w6wH\\Rocket6w6wH\\Migrations\\202412300759082_storecommentaddstar.cs",
-              "RelativeDocumentMoniker": "Rocket6w6wH\\Migrations\\202412300759082_storecommentaddstar.cs",
-              "ToolTip": "C:\\Users\\HP\\Desktop\\\u706B\u7BAD\u968A-backend\\Rocket6w6wH\\Rocket6w6wH\\Migrations\\202412300759082_storecommentaddstar.cs",
-              "RelativeToolTip": "Rocket6w6wH\\Migrations\\202412300759082_storecommentaddstar.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-30T07:59:13.175Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 6,
               "Title": "Configuration.cs",
               "DocumentMoniker": "C:\\Users\\HP\\Desktop\\\u706B\u7BAD\u968A-backend\\Rocket6w6wH\\Rocket6w6wH\\Migrations\\Configuration.cs",
               "RelativeDocumentMoniker": "Rocket6w6wH\\Migrations\\Configuration.cs",
@@ -113,12 +92,11 @@
               "RelativeToolTip": "Rocket6w6wH\\Migrations\\Configuration.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-30T07:57:48.89Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-12-30T07:57:48.89Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "StoreComments.cs",
               "DocumentMoniker": "C:\\Users\\HP\\Desktop\\\u706B\u7BAD\u968A-backend\\Rocket6w6wH\\Rocket6w6wH\\Models\\StoreComments.cs",
               "RelativeDocumentMoniker": "Rocket6w6wH\\Models\\StoreComments.cs",
@@ -126,12 +104,11 @@
               "RelativeToolTip": "Rocket6w6wH\\Models\\StoreComments.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAmAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-30T07:54:26.151Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-12-30T07:54:26.151Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "StoreStars.cs",
               "DocumentMoniker": "C:\\Users\\HP\\Desktop\\\u706B\u7BAD\u968A-backend\\Rocket6w6wH\\Rocket6w6wH\\Models\\StoreStars.cs",
               "RelativeDocumentMoniker": "Rocket6w6wH\\Models\\StoreStars.cs",
@@ -139,12 +116,11 @@
               "RelativeToolTip": "Rocket6w6wH\\Models\\StoreStars.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAmAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-30T07:54:20.932Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-12-30T07:54:20.932Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "Stores.cs",
               "DocumentMoniker": "C:\\Users\\HP\\Desktop\\\u706B\u7BAD\u968A-backend\\Rocket6w6wH\\Rocket6w6wH\\Models\\Stores.cs",
               "RelativeDocumentMoniker": "Rocket6w6wH\\Models\\Stores.cs",
@@ -152,12 +128,11 @@
               "RelativeToolTip": "Rocket6w6wH\\Models\\Stores.cs",
               "ViewState": "AgIAABUAAAAAAAAAAAAYwCgAAAAfAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-30T07:09:53.219Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-12-30T07:09:53.219Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "Member.cs",
               "DocumentMoniker": "C:\\Users\\HP\\Desktop\\\u706B\u7BAD\u968A-backend\\Rocket6w6wH\\Rocket6w6wH\\Models\\Member.cs",
               "RelativeDocumentMoniker": "Rocket6w6wH\\Models\\Member.cs",
@@ -165,12 +140,11 @@
               "RelativeToolTip": "Rocket6w6wH\\Models\\Member.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-30T07:09:18.607Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-12-30T07:09:18.607Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 7,
               "Title": "ValuesController.cs",
               "DocumentMoniker": "C:\\Users\\HP\\Desktop\\\u706B\u7BAD\u968A-backend\\Rocket6w6wH\\Rocket6w6wH\\Controllers\\ValuesController.cs",
               "RelativeDocumentMoniker": "Rocket6w6wH\\Controllers\\ValuesController.cs",
@@ -182,7 +156,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 8,
               "Title": "Global.asax.cs",
               "DocumentMoniker": "C:\\Users\\HP\\Desktop\\\u706B\u7BAD\u968A-backend\\Rocket6w6wH\\Rocket6w6wH\\Global.asax.cs",
               "RelativeDocumentMoniker": "Rocket6w6wH\\Global.asax.cs",
@@ -194,20 +168,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "Web.config",
-              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\\u706B\u7BAD\u968A-backend\\Rocket6w6wH\\Rocket6w6wH\\Web.config",
-              "RelativeDocumentMoniker": "Rocket6w6wH\\Web.config",
-              "ToolTip": "C:\\Users\\HP\\Desktop\\\u706B\u7BAD\u968A-backend\\Rocket6w6wH\\Rocket6w6wH\\Web.config",
-              "RelativeToolTip": "Rocket6w6wH\\Web.config",
-              "ViewState": "AgIAAAQAAAAAAAAAAAAAAA8AAAAQAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
-              "WhenOpened": "2024-12-19T07:49:31.239Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 9,
               "Title": "Index.cshtml",
               "DocumentMoniker": "C:\\Users\\HP\\Desktop\\\u706B\u7BAD\u968A-backend\\Rocket6w6wH\\Rocket6w6wH\\Views\\Home\\Index.cshtml",
               "RelativeDocumentMoniker": "Rocket6w6wH\\Views\\Home\\Index.cshtml",
