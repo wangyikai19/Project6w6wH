@@ -135,7 +135,6 @@ C:\Users\HP\Desktop\火箭隊-backend\Rocket6w6wH\Rocket6w6wH\bin\zh-Hant\System
 C:\Users\HP\Desktop\火箭隊-backend\Rocket6w6wH\Rocket6w6wH\bin\zh-Hant\System.Web.WebPages.Deployment.resources.dll
 C:\Users\HP\Desktop\火箭隊-backend\Rocket6w6wH\Rocket6w6wH\bin\zh-Hant\System.Web.WebPages.Razor.resources.dll
 C:\Users\HP\Desktop\火箭隊-backend\Rocket6w6wH\Rocket6w6wH\obj\Debug\Rocket6w6wH.csproj.AssemblyReference.cache
-C:\Users\HP\Desktop\火箭隊-backend\Rocket6w6wH\Rocket6w6wH\obj\Debug\Rocket6w6wH.Migrations.StoreStars.resources
 C:\Users\HP\Desktop\火箭隊-backend\Rocket6w6wH\Rocket6w6wH\obj\Debug\Rocket6w6wH.Migrations.Stars.resources
 C:\Users\HP\Desktop\火箭隊-backend\Rocket6w6wH\Rocket6w6wH\obj\Debug\Rocket6w6wH.Migrations.StoreComments.resources
 C:\Users\HP\Desktop\火箭隊-backend\Rocket6w6wH\Rocket6w6wH\obj\Debug\Rocket6w6wH.Migrations.Configs.resources
@@ -165,3 +164,5 @@ C:\Users\HP\Desktop\Project6w6wH\Rocket6w6wH\obj\Debug\Rocket6w6wH.csproj.Genera
 C:\Users\HP\Desktop\Project6w6wH\Rocket6w6wH\obj\Debug\Rocket6w6wH.csproj.CoreCompileInputs.cache
 C:\Users\HP\Desktop\Project6w6wH\Rocket6w6wH\obj\Debug\Rocket6w6wH.dll
 C:\Users\HP\Desktop\Project6w6wH\Rocket6w6wH\obj\Debug\Rocket6w6wH.pdb
+C:\Users\HP\Desktop\火箭隊-backend\Rocket6w6wH\Rocket6w6wH\obj\Debug\Rocket6w6wH.Migrations.storecommentaddstar.resources
+C:\Users\HP\Desktop\火箭隊-backend\Rocket6w6wH\Rocket6w6wH\obj\Debug\Rocket6w6wH.Migrations.storeaddtags.resources

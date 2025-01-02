@@ -236,10 +236,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202412230525024_StoreStars.cs" />
-    <Compile Include="Migrations\202412230525024_StoreStars.Designer.cs">
-      <DependentUpon>202412230525024_StoreStars.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\202412230531546_Stars.cs" />
     <Compile Include="Migrations\202412230531546_Stars.Designer.cs">
       <DependentUpon>202412230531546_Stars.cs</DependentUpon>
@@ -275,6 +271,14 @@
     <Compile Include="Migrations\202412260423101_StorePictures.cs" />
     <Compile Include="Migrations\202412260423101_StorePictures.Designer.cs">
       <DependentUpon>202412260423101_StorePictures.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202412300759082_storecommentaddstar.cs" />
+    <Compile Include="Migrations\202412300759082_storecommentaddstar.Designer.cs">
+      <DependentUpon>202412300759082_storecommentaddstar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202501020310567_storeaddtags.cs" />
+    <Compile Include="Migrations\202501020310567_storeaddtags.Designer.cs">
+      <DependentUpon>202501020310567_storeaddtags.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\City.cs" />
@@ -437,9 +441,6 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202412230525024_StoreStars.resx">
-      <DependentUpon>202412230525024_StoreStars.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202412230531546_Stars.resx">
       <DependentUpon>202412230531546_Stars.cs</DependentUpon>
     </EmbeddedResource>
@@ -466,6 +467,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202412260423101_StorePictures.resx">
       <DependentUpon>202412260423101_StorePictures.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202412300759082_storecommentaddstar.resx">
+      <DependentUpon>202412300759082_storecommentaddstar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202501020310567_storeaddtags.resx">
+      <DependentUpon>202501020310567_storeaddtags.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

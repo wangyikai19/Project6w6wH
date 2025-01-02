@@ -7,13 +7,13 @@ namespace Rocket6w6wH.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.5.1")]
-    public sealed partial class StoreStars : IMigrationMetadata
+    public sealed partial class storeaddtags : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(StoreStars));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(storeaddtags));
         
         string IMigrationMetadata.Id
         {
-            get { return "202412230525024_StoreStars"; }
+            get { return "202501020310567_storeaddtags"; }
         }
         
         string IMigrationMetadata.Source

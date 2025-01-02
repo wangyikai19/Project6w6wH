@@ -14,8 +14,8 @@ namespace Rocket6w6wH.Controllers
     public class AuthController : Controller
     {
         private const string RedirectUri = "http://localhost:44320/callback";
-        private const string ClientId = "http://localhost:44320/callback"; 
-        private const string ClientSecret = "http://localhost:44320/callback";
+        private const string ClientId = ""; 
+        private const string ClientSecret = "";
         // 產生 Google 登入連結
         public ActionResult LoginGoogle()
         {
