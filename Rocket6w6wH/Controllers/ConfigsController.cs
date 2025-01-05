@@ -49,7 +49,7 @@ namespace Rocket6w6wH.Controllers
                     var result = Communicate.Select(store => new
                     {
                         store.PVal,
-                        store.Mavl
+                        store.MVal
                     });
                     if (Communicate == null || Communicate.Count == 0)
                     {

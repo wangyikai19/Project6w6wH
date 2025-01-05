@@ -1,5 +1,4 @@
 ﻿using Newtonsoft.Json;
-using Rocket6w6wH.Migrations;
 using Rocket6w6wH.Models;
 using System;
 using System.Collections.Generic;
@@ -7,6 +6,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Security.Principal;
 using System.Web.Http;
 using System.Web.Optimization;
 using System.Web.UI.WebControls;
@@ -91,20 +91,21 @@ namespace Rocket6w6wH.Controllers
                 using (var context = new Model())
                 {
                     var store = context.Stores.FirstOrDefault(m => m.Id == id);
-                    var storeStars = context.StoreStars.Where(m => m.StoreId == id).ToList();
+                    var storeStars = context.StoreComments.Where(m => m.StoreId == id).ToList();
                     var tagIds = store.StoreTags.Split(',').Select(tag => int.Parse(tag.Trim())).ToList();
                     var searchConditions = context.SearchCondition.Where(sc => tagIds.Contains(sc.Id)).ToList();
+                    string idr = context.Configs.FirstOrDefault(i => i.Group == "IDR").MVal;
+                    int IDR = int.Parse(idr);
                     var tags = searchConditions.Select(sc => new
                     {
                         tagId = sc.Id,
-                        tagName = sc.Mavl,
+                        tagName = sc.MVal,
                     }).ToList();
                     var averageStars = 0;
                     if (storeStars.Count > 0)
                     {
                         averageStars = (int)Math.Round(storeStars.Average(m => m.Stars));
                     }
-
                     var openingHours = JsonConvert.DeserializeObject<Dictionary<string, string>>(store.BusinessHours);
                     var data = new
                     {
@@ -118,14 +119,14 @@ namespace Rocket6w6wH.Controllers
                         starCount = averageStars,
                         tags,
                         isFavorited = "", 
-                        placeId = "",
+                        placeId = store.StoreGoogleId,
                         location = new { lat = store.XLocation, lng = store.YLocation }, 
                         displayName = store.StoreName, 
                         photos ="",
                         address = store.AddressCh,
                         enAddress = store.AddressEn,
-                        ok = store.ReserveUrl,
-                        budget = store.PriceStart+"+"+ store.PriceEnd,
+                        book = store.ReserveUrl,
+                        budget = "NTD "+store.PriceStart+"~"+ store.PriceEnd+" / Rp "+ store.PriceStart* IDR + "~" + store.PriceEnd* IDR,
                         phone = store.Phone,
                         url = "",
                         opening_hours = openingHours
@@ -157,41 +158,81 @@ namespace Rocket6w6wH.Controllers
         }
         [HttpGet]
         [Route("api/stores/search")]
-        public IHttpActionResult SearchStores([FromBody] SearchStoresRequest request)
+        public IHttpActionResult SearchStores([FromBody] SearchRequest request)
         {
             try
             {
                 using (var context = new Model())
                 {
+                    const double radiusInKm = 3;
                     var locationType = request.LocationType;
-                    var latitude = request.Latitude;
-                    var longitude = request.Longitude;
-                    var stationId = request.StationId;
+                    var latitude = request.Location.Lat;
+                    var longitude = request.Location.Lng;
+                    var cityId = request.CityId;
+                    var cityName = context.City.FirstOrDefault(m => m.Id == cityId)?.CountryName ?? string.Empty;
+                    var tags = string.Join(",", request.Tags ?? new List<int>());
+                    var comments = context.StoreComments.ToList();
                     var stores = context.Stores.ToList();
-                    // 根据 locationType 进行过滤
+
+                    double CalculateDistance(double lat1, double lon1, double lat2, double lon2)
+                    {
+                        const double earthRadius = 6371.0;
+                        double dLat = (lat2 - lat1) * (Math.PI / 180.0);
+                        double dLon = (lon2 - lon1) * (Math.PI / 180.0);
+
+                        lat1 *= Math.PI / 180.0;
+                        lat2 *= Math.PI / 180.0;
+
+                        double a = Math.Sin(dLat / 2) * Math.Sin(dLat / 2) +
+                                   Math.Sin(dLon / 2) * Math.Sin(dLon / 2) * Math.Cos(lat1) * Math.Cos(lat2);
+                        double c = 2 * Math.Atan2(Math.Sqrt(a), Math.Sqrt(1 - a));
+                        return earthRadius * c;
+                    }
+
                     if (locationType == "user")
                     {
-                        // 使用经纬度进行过滤（假设存储了经纬度字段）
-                        //stores = stores.Where(store => store.XLocation == latitude && store.YLocation == longitude);
+                        stores = stores.Where(s => CalculateDistance(latitude, longitude, (double)s.XLocation, (double)s.YLocation) <= radiusInKm).ToList();
                     }
-                    else if (!string.IsNullOrEmpty(stationId))
+                    else
                     {
-                        // 根据 StationId 查找对应的车站或其他相关逻辑
-                        //stores = stores.Where(store => store.StationId == stationId);
-                    }
-                    if (request.Category != null && request.Category.Count > 0)
-                    {
-                        var categoryIds = request.Category.Select(c => c.CategoryId).ToList();
-                    }
-                    if (request.Service != null && request.Service.Count > 0)
-                    {
-                        var serviceIds = request.Service.Select(s => s.ServiceId).ToList();
-                        //stores = stores.Where(store => serviceIds.Contains(store.ServiceId));
+                        stores = stores.Where(store => store.AddressCh != null && store.AddressCh.Contains(cityName)).ToList();
+                        if (!string.IsNullOrWhiteSpace(tags))
+                        {
+                            stores = stores.Where(s => s.StoreTags != null).ToList();
+                            stores = stores.Where(store => store.StoreTags.Split(',').Intersect(tags.Split(',')).Any() == true).ToList();
+                        }
                     }
 
-                    var result = stores.ToList();
-                    return Ok(stores);
+                    var result = stores.Select(store => new
+                    {
+                        advertise = new
+                        {
+                            photo = "",
+                            url = "",
+                            title = "",
+                            slogan = ""
+                        },
+                        starCount = comments
+                            .Where(m => m.StoreId == store.Id)
+                            .Select(m => (double?)m.Stars)
+                            .DefaultIfEmpty(0)
+                            .Average(),
+                        tags,
+                        isFavorited = "",
+                        placeId = "",
+                        location = new { lat = store.XLocation, lng = store.YLocation },
+                        displayName = store.StoreName,
+                        photos = "",
+                        address = store.AddressCh,
+                        enAddress = store.AddressEn,
+                        ok = store.ReserveUrl,
+                        budget = $"{store.PriceStart}+{store.PriceEnd}",
+                        phone = store.Phone,
+                        url = "",
+                        opening_hours = JsonConvert.DeserializeObject<Dictionary<string, string>>(store.BusinessHours)
+                    }).ToList();
 
+                    return Ok(new { result });
                 }
             }
             catch (Exception ex)
@@ -271,25 +312,18 @@ namespace Rocket6w6wH.Controllers
                 return InternalServerError(new Exception("詳細錯誤訊息", ex));
             }
         }
-        public class SearchStoresRequest
+        public class SearchRequest
         {
-            public string LocationType { get; set; } // 可选"user"或"station"
-            public decimal Latitude { get; set; }
-            public decimal Longitude { get; set; }
-            public string StationId { get; set; }
-            public List<Category> Category { get; set; } // 类别列表
-            public List<Service> Service { get; set; } // 服务项目列表
-        }
-        public class Category
-        {
-            public int CategoryId { get; set; }
-            public string Name { get; set; }
+            public string LocationType { get; set; } 
+            public Location Location { get; set; }
+            public int CityId { get; set; }
+            public List<int> Tags { get; set; } 
         }
 
-        public class Service
+        public class Location
         {
-            public int ServiceId { get; set; }
-            public string Name { get; set; }
+            public double Lat { get; set; }
+            public double Lng { get; set; }
         }
     }
 }

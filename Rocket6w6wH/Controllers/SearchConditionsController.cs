@@ -37,26 +37,37 @@ namespace Rocket6w6wH.Controllers
         {
         }
         [HttpGet]
-        [Route("api/searchconditions/{group}")]
-        public IHttpActionResult GetSearchConditions(string group)
+        [Route("api/searchconditions")]
+        public IHttpActionResult GetSearchConditions()
         {
             try
             {
                 using (var context = new Model())
                 {
-                    var Conditions = context.SearchCondition.Where(s=>s.Group== group).ToList();
+                    var conditions = context.SearchCondition.ToList();
 
-                    if (Conditions == null || Conditions.Count == 0)
+                    var data = conditions.Select(condition => new
+                    {
+                        id = condition.Id,
+                        group = condition.Group,
+                        name = condition.MVal
+                    }).ToList();
+                    var response = new
+                    {
+                        statusCode = 200,
+                        status = true,
+                        message = "資料取得成功",
+                        data
+                    };
+                    if (conditions == null || conditions.Count == 0)
                     {
                         return NotFound();
                     }
-                    return Ok(Conditions.Select(store => new
+                    else
                     {
-                        store.Id,
-                        store.Group,
-                        store.PVal,
-                        store.Mavl,
-                    }));
+                        return Ok(response);
+                    }
+
                 }
             }
             catch (Exception ex)

@@ -36,7 +36,7 @@ namespace Rocket6w6wH.Controllers
             var searchConditionTable = db.SearchCondition.ToList();
             foreach (var tag in commentData.tags)
             {
-                int labelId = searchConditionTable.Where(m => m.Mavl == tag).Select(x => x.Id).FirstOrDefault();
+                int labelId = searchConditionTable.Where(m => m.MVal == tag).Select(x => x.Id).FirstOrDefault();
                 tagslist.Add(labelId);
             };
             string labelstr = JsonConvert.SerializeObject(tagslist);

@@ -14,12 +14,13 @@ namespace Rocket6w6wH.Models
 
         public virtual DbSet<Member> Member { get; set; }
         public virtual DbSet<Stores> Stores { get; set; }
-        public virtual DbSet<StoreStars> StoreStars { get; set; }
         public virtual DbSet<StoreComments> StoreComments { get; set; }
         public virtual DbSet<Configs> Configs { get; set; }
         public virtual DbSet<SearchCondition> SearchCondition { get; set; }
         public virtual DbSet<City> City { get; set; }
         public virtual DbSet<StorePictures> StorePictures { get; set; }
+        public virtual DbSet<Reply> Reply { get; set; }
+        public virtual DbSet<ReplyLike> ReplyLike { get; set; }
 
 
 
@@ -27,18 +28,25 @@ namespace Rocket6w6wH.Models
         {
             modelBuilder.Entity<Stores>()
                 .Property(e => e.XLocation)
-                .HasPrecision(18, 0);
+                .HasPrecision(18, 8);
 
             modelBuilder.Entity<Stores>()
                 .Property(e => e.YLocation)
-                .HasPrecision(18, 0);
+                .HasPrecision(18, 8);
 
             modelBuilder.Entity<StoreComments>()
-                .HasRequired(sc => sc.Member) // StoreComments 必須有 Member
-                .WithMany(m => m.StoreComments) // Member 可以有多個 StoreComments
-                .HasForeignKey(sc => sc.MemberId); // 外鍵是 MemberId
+                .HasRequired(sc => sc.Member)
+                .WithMany(m => m.StoreComments)
+                .HasForeignKey(sc => sc.MemberId)
+                .WillCascadeOnDelete(false);
 
-            base.OnModelCreating(modelBuilder);
+            //modelBuilder.Entity<StoreComments>()
+            //    .HasRequired(sc => sc.Member) // StoreComments 必須有 Member
+            //    .WithMany(m => m.StoreComments) // Member 可以有多個 StoreComments
+            //    .HasForeignKey(sc => sc.MemberId); // 外鍵是 MemberId
+
+            //base.OnModelCreating(modelBuilder);
+
         }
     }
 }

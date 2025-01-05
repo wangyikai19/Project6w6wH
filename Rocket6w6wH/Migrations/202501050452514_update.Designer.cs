@@ -7,13 +7,13 @@ namespace Rocket6w6wH.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.5.1")]
-    public sealed partial class CountryName : IMigrationMetadata
+    public sealed partial class update : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(CountryName));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(update));
         
         string IMigrationMetadata.Id
         {
-            get { return "202412240446243_CountryName"; }
+            get { return "202501050452514_update"; }
         }
         
         string IMigrationMetadata.Source
