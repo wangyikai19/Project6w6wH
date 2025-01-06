@@ -22,7 +22,6 @@ namespace Rocket6w6wH.Models
         public virtual DbSet<Reply> Reply { get; set; }
         public virtual DbSet<ReplyLike> ReplyLike { get; set; }
         public virtual DbSet<CommentPictures> CommentPictures { get; set; }
-        public virtual DbSet<CommentMessage> CommentMessage { get; set; }
 
 
 
@@ -41,12 +40,6 @@ namespace Rocket6w6wH.Models
                 .WithMany(m => m.StoreComments)
                 .HasForeignKey(sc => sc.MemberId)
                 .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<CommentMessage>()
-                          .HasRequired(m => m.Member)  // 表示 Member 是必須的
-                          .WithMany(mem => mem.CommentMessage) // Member 與 Messages 的一對多關係
-                          .HasForeignKey(m => m.MemberId) // 外鍵是 MemberId
-                          .WillCascadeOnDelete(false); // 禁用級聯刪除
 
             base.OnModelCreating(modelBuilder);
 
