@@ -244,6 +244,7 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\City.cs" />
+    <Compile Include="Models\CommentMessage.cs" />
     <Compile Include="Models\CommentPictures.cs" />
     <Compile Include="Models\Configs.cs" />
     <Compile Include="Models\Member.cs" />
