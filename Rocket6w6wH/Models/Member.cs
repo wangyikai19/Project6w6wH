@@ -19,5 +19,6 @@ namespace Rocket6w6wH.Models
         // 導航屬性 - 一對多關係
 
         public virtual ICollection<StoreComments> StoreComments { get; set; }
+        public virtual ICollection<CommentMessage> CommentMessage { get; set; }
     }
 }
