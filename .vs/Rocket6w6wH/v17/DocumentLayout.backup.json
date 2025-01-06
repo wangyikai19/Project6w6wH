@@ -3,6 +3,14 @@
   "WorkspaceRootPath": "C:\\Users\\HP\\Desktop\\\u706B\u7BAD\u968A-backend\\Project6w6wH\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{F457148B-291B-4F16-9BA8-8B62519F6031}|Rocket6w6wH\\Rocket6w6wH.csproj|c:\\users\\hp\\desktop\\\u706B\u7BAD\u968A-backend\\project6w6wh\\rocket6w6wh\\models\\gittest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F457148B-291B-4F16-9BA8-8B62519F6031}|Rocket6w6wH\\Rocket6w6wH.csproj|solutionrelative:rocket6w6wh\\models\\gittest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F457148B-291B-4F16-9BA8-8B62519F6031}|Rocket6w6wH\\Rocket6w6wH.csproj|c:\\users\\hp\\desktop\\\u706B\u7BAD\u968A-backend\\project6w6wh\\rocket6w6wh\\models\\member.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F457148B-291B-4F16-9BA8-8B62519F6031}|Rocket6w6wH\\Rocket6w6wH.csproj|solutionrelative:rocket6w6wh\\models\\member.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{F457148B-291B-4F16-9BA8-8B62519F6031}|Rocket6w6wH\\Rocket6w6wH.csproj|C:\\Users\\HP\\Desktop\\\u706B\u7BAD\u968A-backend\\Project6w6wH\\rocket6w6wh\\models\\model.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F457148B-291B-4F16-9BA8-8B62519F6031}|Rocket6w6wH\\Rocket6w6wH.csproj|solutionrelative:rocket6w6wh\\models\\model.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -38,11 +46,41 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
+              "Title": "gittest.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\\u706B\u7BAD\u968A-backend\\Project6w6wH\\Rocket6w6wH\\Models\\gittest.cs",
+              "RelativeDocumentMoniker": "Rocket6w6wH\\Models\\gittest.cs",
+              "ToolTip": "C:\\Users\\HP\\Desktop\\\u706B\u7BAD\u968A-backend\\Project6w6wH\\Rocket6w6wH\\Models\\gittest.cs",
+              "RelativeToolTip": "Rocket6w6wH\\Models\\gittest.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-06T03:03:41.604Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Member.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\\u706B\u7BAD\u968A-backend\\Project6w6wH\\Rocket6w6wH\\Models\\Member.cs",
+              "RelativeDocumentMoniker": "Rocket6w6wH\\Models\\Member.cs",
+              "ToolTip": "C:\\Users\\HP\\Desktop\\\u706B\u7BAD\u968A-backend\\Project6w6wH\\Rocket6w6wH\\Models\\Member.cs",
+              "RelativeToolTip": "Rocket6w6wH\\Models\\Member.cs",
+              "ViewState": "AgIAACIAAAAAAAAAAAAcwCgAAAAvAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-06T02:47:20.678Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "Reply.cs",
               "DocumentMoniker": "C:\\Users\\HP\\Desktop\\\u706B\u7BAD\u968A-backend\\Project6w6wH\\Rocket6w6wH\\Models\\Reply.cs",
               "RelativeDocumentMoniker": "Rocket6w6wH\\Models\\Reply.cs",
@@ -55,7 +93,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "CommentController.cs",
               "DocumentMoniker": "C:\\Users\\HP\\Desktop\\\u706B\u7BAD\u968A-backend\\Project6w6wH\\Rocket6w6wH\\Controllers\\CommentController.cs",
               "RelativeDocumentMoniker": "Rocket6w6wH\\Controllers\\CommentController.cs",
@@ -68,7 +106,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "Web.config",
               "DocumentMoniker": "C:\\Users\\HP\\Desktop\\\u706B\u7BAD\u968A-backend\\Project6w6wH\\Rocket6w6wH\\Web.config",
               "RelativeDocumentMoniker": "Rocket6w6wH\\Web.config",
@@ -80,12 +118,8 @@
               "EditorCaption": ""
             },
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
-            },
-            {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "Model.cs",
               "DocumentMoniker": "C:\\Users\\HP\\Desktop\\\u706B\u7BAD\u968A-backend\\Project6w6wH\\Rocket6w6wH\\Models\\Model.cs",
               "RelativeDocumentMoniker": "Rocket6w6wH\\Models\\Model.cs",
@@ -98,7 +132,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 6,
               "Title": "CommentPictures.cs",
               "DocumentMoniker": "C:\\Users\\HP\\Desktop\\\u706B\u7BAD\u968A-backend\\Project6w6wH\\Rocket6w6wH\\Models\\CommentPictures.cs",
               "RelativeDocumentMoniker": "Rocket6w6wH\\Models\\CommentPictures.cs",
@@ -111,7 +145,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 7,
               "Title": "StoresController.cs",
               "DocumentMoniker": "C:\\Users\\HP\\Desktop\\\u706B\u7BAD\u968A-backend\\Project6w6wH\\Rocket6w6wH\\Controllers\\StoresController.cs",
               "RelativeDocumentMoniker": "Rocket6w6wH\\Controllers\\StoresController.cs",
@@ -124,7 +158,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 8,
               "Title": "StoreComments.cs",
               "DocumentMoniker": "C:\\Users\\HP\\Desktop\\\u706B\u7BAD\u968A-backend\\Project6w6wH\\Rocket6w6wH\\Models\\StoreComments.cs",
               "RelativeDocumentMoniker": "Rocket6w6wH\\Models\\StoreComments.cs",
