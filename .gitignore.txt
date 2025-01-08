@@ -1,0 +1,8 @@
+.vs/                      
+packages/                  
+GitDemo/bin/       
+GitDemo/Content/   
+GitDemo/obj/       
+GitDemo/Scripts/
+*.user
+*.config
