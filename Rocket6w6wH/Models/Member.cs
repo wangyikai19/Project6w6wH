@@ -35,10 +35,14 @@ namespace Rocket6w6wH.Models
         public string Badge { get; set; }
         [Display(Name = "大頭照")]
         public string MemberPictureUrl { get; set; }
+
+        [Display(Name = "性別")]
+        public int Gender { get; set; }
         // 導航屬性 - 一對多關係
 
         public virtual ICollection<StoreComments> StoreComments { get; set; }//反向導航屬性
         public virtual ICollection<Reply> Reply { get; set; }//反向導航屬性
         public virtual ICollection<ReplyLike> ReplyLike { get; set; }//反向導航屬性
+        public virtual ICollection<CommentLike> CommentLike { get; set; }//反向導航屬性
     }
 }

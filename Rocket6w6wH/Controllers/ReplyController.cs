@@ -25,6 +25,8 @@ namespace Rocket6w6wH.Controllers
                     var commentid = request.CommentId;
                     var userid = request.UserId;
                     var replies = context.Reply.Where(c => c.CommentId == commentid).Include(m=>m.Member).ToList();
+                    var repliID= replies.Select(r => r.Id).ToList();
+                    var like = context.ReplyLike.Where(l => l.LikeUserId == userid && repliID.Contains(l.ReplyId)).Count();
                     var data = replies.Select(r => new
                     {
                         replyID = r.Id,
@@ -36,7 +38,7 @@ namespace Rocket6w6wH.Controllers
                         badge = r.Member?.Badge ?? null, // 空值處理
                         country = r.Member?.Country ?? null, // 空值處理
                         likeCount = 1,
-                        isLike = true,
+                        isLike = like,
                     }).ToList();
                     var response = new
                     {

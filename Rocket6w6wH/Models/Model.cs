@@ -22,6 +22,7 @@ namespace Rocket6w6wH.Models
         public virtual DbSet<Reply> Reply { get; set; }
         public virtual DbSet<ReplyLike> ReplyLike { get; set; }
         public virtual DbSet<CommentPictures> CommentPictures { get; set; }
+        public virtual DbSet<CollectStore> CollectStore { get; set; }
 
 
 

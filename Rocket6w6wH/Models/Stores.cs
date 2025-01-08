@@ -53,6 +53,8 @@ namespace Rocket6w6wH.Models
 
         [Display(Name = "店家標籤")]
         public string StoreTags { get; set; }
+        [Display(Name = "是否為贊助店家")]
+        public bool IsAdvertise { get; set; }
 
         public DateTime? CreateTime { get; set; }
 
@@ -60,6 +62,7 @@ namespace Rocket6w6wH.Models
 
         public virtual ICollection<StoreComments> StoreComments { get; set; }
         public virtual ICollection<StorePictures> StorePictures { get; set; }
+        public virtual ICollection<CollectStore> CollectStores { get; set; }
 
 
     }

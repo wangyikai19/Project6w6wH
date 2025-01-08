@@ -1,4 +1,5 @@
 ﻿using Jose;
+using Rocket6w6wH.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,7 @@ namespace Rocket6w6wH.Security
 {
     public class JwtAuthUtil
     {
+        private Model db = new Model();
         //private readonly ApplicationDbContext db = new ApplicationDbContext(); // DB 連線
         private static readonly string secretKey = "ILoveRocketCoding";
         /// <summary>
@@ -21,7 +23,7 @@ namespace Rocket6w6wH.Security
         {
             // 自訂字串，驗證用，用來加密送出的 key (放在 Web.config 的 appSettings)
             /*  string secretKey = WebConfigurationManager.AppSettings["TokenKey"]; */// 從 appSettings 取出
-            //var user = db.User.Find(id); // 進 DB 取出想要夾帶的基本資料
+            var user = db.Member.FirstOrDefault(m => m.Id == id); // 進 DB 取出想要夾帶的基本資料
             //string secretKey = "ILoveRocketCoding";
 
 
@@ -29,6 +31,8 @@ namespace Rocket6w6wH.Security
             var payload = new Dictionary<string, object>
             {
                 { "Id", id },
+                { "Email", user.Email },
+                { "Country", user.Country },
                 { "Exp", DateTime.Now.AddMinutes(30).ToString() } // JwtToken 時效設定 30 分
             };
 

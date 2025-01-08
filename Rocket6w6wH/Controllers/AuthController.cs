@@ -8,19 +8,21 @@ using System.Web;
 using System.Web.Mvc;
 using System.Net;
 using System.Web.Http;
+using Rocket6w6wH.Models;
 
 namespace Rocket6w6wH.Controllers
 {
     public class AuthController : Controller
     {
+        private Model db = new Model();
         private const string RedirectUri = "http://localhost:44320/callback";
-        private const string ClientId = ""; 
-        private const string ClientSecret = "";
         // 產生 Google 登入連結
         public ActionResult LoginGoogle()
         {
+            string Id = db.Configs.Where(c => c.Group == "ClientId").Select(c => c.MVal).FirstOrDefault();
+            string Secret = db.Configs.Where(c => c.Group == "ClientSecret").Select(c => c.MVal).FirstOrDefault();
             var url = $"https://accounts.google.com/o/oauth2/v2/auth" +
-                      $"?client_id={ClientId}" +
+                      $"?client_id={Id}" +
                       $"&redirect_uri={RedirectUri}" +
                       $"&response_type=code" +
                       $"&scope=openid%20email%20profile";
@@ -39,13 +41,16 @@ namespace Rocket6w6wH.Controllers
             // 交換 Token
             using (var client = new HttpClient())
             {
+                string Id = db.Configs.Where(c => c.Group == "ClientId").Select(c => c.MVal).FirstOrDefault();
+                string Secret = db.Configs.Where(c => c.Group == "ClientSecret").Select(c => c.MVal).FirstOrDefault();
                 var tokenRequest = new HttpRequestMessage(HttpMethod.Post, "https://oauth2.googleapis.com/token")
                 {
+
                     Content = new FormUrlEncodedContent(new[]
                     {
                     new KeyValuePair<string, string>("code", code),
-                    new KeyValuePair<string, string>("client_id", ClientId),
-                    new KeyValuePair<string, string>("client_secret", ClientSecret),
+                    new KeyValuePair<string, string>("client_id", Id),
+                    new KeyValuePair<string, string>("client_secret", Secret),
                     new KeyValuePair<string, string>("redirect_uri", RedirectUri),
                     new KeyValuePair<string, string>("grant_type", "authorization_code")
                 })

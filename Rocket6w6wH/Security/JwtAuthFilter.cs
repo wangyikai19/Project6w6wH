@@ -46,7 +46,8 @@ namespace Rocket6w6wH.Security
                     // 有 JwtToken 且授權格式正確時執行，用 try 包住，因為如果有篡改可能解密失敗
                     // 解密後會回傳 Json 格式的物件 (即加密前的資料)
                     var jwtObject = JwtAuthUtil.GetToken(request.Headers.Authorization.Parameter);
-
+                    var memberId = int.Parse(jwtObject["Id"].ToString());//從jwt找ID
+                    HttpContext.Current.Items["memberid"] = memberId;//帶入參數
                     // 檢查有效期限是否過期，如 JwtToken 過期，需導引重新登入
                     if (IsTokenExpired(jwtObject["Exp"].ToString()))
                     {

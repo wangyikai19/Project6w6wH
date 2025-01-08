@@ -21,3 +21,4 @@ Thumbs.db         # Windows 特有
 *.log
 # 忽略 npm 包管理相关的文件（如果有使用 Node.js）
 node_modules/
+git diff --cached

@@ -6,55 +6,23 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Security.Cryptography;
 using System.Web.Helpers;
 using System.Web.Http;
+using System.Web.UI.WebControls;
+using System.Xml.Linq;
 
 namespace Rocket6w6wH.Controllers
 {
     public class ValuesController : ApiController
     {
-        //private Models model = new Models.Member();
+        private Model db = new Model();
         // GET api/values
         public IEnumerable<string> Get()
         {
             return new string[] { "value1", "value2" };
         }
-        [HttpGet]
-        [Route("api/user/test")]
-        public IHttpActionResult Test(string id)
-        {
-            string jwt = id;
 
-            var handler = new JwtSecurityTokenHandler();
-            try
-            {
-                var jsonToken = handler.ReadToken(jwt) as JwtSecurityToken;
-
-                // 從 JWT 中提取一些信息
-                if (jsonToken != null)
-                {
-                    var issuer = jsonToken.Issuer;
-                    var audience = jsonToken.Audiences.FirstOrDefault();
-                    var claims = jsonToken.Claims;
-                    JwtAuthUtil jwtAuthUtil = new JwtAuthUtil();
-                    string jwtToken = jwtAuthUtil.GenerateToken(1);
-                    return Ok(new
-                    {
-                        Status = true,
-                        Issuer = issuer,
-                        Audience = audience,
-                        Claims = claims.Select(c => new { c.Type, c.Value }),
-                        JwtToken = jwtToken
-                    });
-                }
-            }
-            catch (Exception ex)
-            {
-                return BadRequest("Invalid token: " + ex.Message);
-            }
-
-            return Ok(new { Message = "OK" });
-        }
         /// <summary>
         /// 驗證登入狀態
         /// </summary>
@@ -132,27 +100,17 @@ namespace Rocket6w6wH.Controllers
         // POST api/value
         public void Post([FromBody] string value)
         {
-            using (var context = new Model()) 
+            using (var context = new Model())
             {
                 var newMember = new Member
                 {
                     Email = value,
-                                   
+
                 };
 
                 context.Member.Add(newMember);
                 context.SaveChanges();
             }
-        }
-
-        // PUT api/values/5
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        // DELETE api/values/5
-        public void Delete(int id)
-        {
         }
     }
 }
