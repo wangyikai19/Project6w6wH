@@ -7,6 +7,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Security.Cryptography;
+using System.Web;
 using System.Web.Helpers;
 using System.Web.Http;
 using System.Web.UI.WebControls;
@@ -18,8 +19,11 @@ namespace Rocket6w6wH.Controllers
     {
         private Model db = new Model();
         // GET api/values
+        [JwtAuthFilter]
+        [Route("api/values")]
         public IEnumerable<string> Get()
         {
+            var userId = (int)HttpContext.Current.Items["memberid"];
             return new string[] { "value1", "value2" };
         }
 

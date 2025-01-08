@@ -147,36 +147,40 @@ namespace Rocket6w6wH.Controllers
                 {
                     memberId = 0;
                 }
-                try
+                else
                 {
-                    var jwtObject = JwtAuthUtil.GetToken(request.Headers.Authorization.Parameter);
-                    memberId = int.Parse(jwtObject["Id"].ToString());
-                }
-                catch
-                {
-                    var response = new
+                    try
                     {
-                        statusCode = 401,
-                        status = false,
-                        message = "Token 無效或已過期"
-                    };
-                    return Content(System.Net.HttpStatusCode.Unauthorized, response);
+                        var jwtObject = JwtAuthUtil.GetToken(request.Headers.Authorization.Parameter);
+                        memberId = int.Parse(jwtObject["Id"].ToString());
+                    }
+                    catch
+                    {
+                        var response = new
+                        {
+                            statusCode = 401,
+                            status = false,
+                            message = "Token 無效或已過期"
+                        };
+                        return Content(System.Net.HttpStatusCode.Unauthorized, response);
+                    }
                 }
                 using (var context = new Model())
                 {
                     var store = context.Stores.FirstOrDefault(m => m.Id == storeid);
-                    var mid = context.CollectStore.Where(c=>c.StoreId== storeid & c.MemberId== memberId);
-                    if (store != null) { 
-                    var storeStars = context.StoreComments.Where(m => m.StoreId == storeid).ToList();
-                    var comments = context.StoreComments.ToList();
-                    string idr = context.Configs.FirstOrDefault(i => i.Group == "IDR").MVal;
-                    int IDR = int.Parse(idr);
-                    var averageStars = 0;
-                    if (storeStars.Count > 0)
+                    var mid = context.CollectStore.Where(c => c.StoreId == storeid & c.MemberId == memberId);
+                    if (store != null)
                     {
-                        averageStars = (int)Math.Round(storeStars.Average(m => m.Stars));
-                    }
-                    var openingHours = JsonConvert.DeserializeObject<Dictionary<string, string>>(store.BusinessHours);
+                        var storeStars = context.StoreComments.Where(m => m.StoreId == storeid).ToList();
+                        var comments = context.StoreComments.ToList();
+                        string idr = context.Configs.FirstOrDefault(i => i.Group == "IDR").MVal;
+                        int IDR = int.Parse(idr);
+                        var averageStars = 0;
+                        if (storeStars.Count > 0)
+                        {
+                            averageStars = (int)Math.Round(storeStars.Average(m => m.Stars));
+                        }
+                        var openingHours = JsonConvert.DeserializeObject<Dictionary<string, string>>(store.BusinessHours);
                         var tags = comments
                                     .Where(c => !string.IsNullOrEmpty(c.Label) && c.StoreId == store.Id)
                                     .SelectMany(c => c.Label.Split(','))
@@ -189,33 +193,34 @@ namespace Rocket6w6wH.Controllers
                             tags = new Dictionary<string, int>(); // 空的字典
                         }
                         var data = new
-                    {
-                        advertise = new
                         {
-                            photo = "",
-                            url = "",
-                            title = "",
-                            slogan = ""
-                        },
-                        starCount = averageStars,
-                        tags = comments
+                            advertise = new
+                            {
+                                photo = "",
+                                url = "",
+                                title = "",
+                                slogan = ""
+                            },
+                            id=store.Id,
+                            starCount = averageStars,
+                            tags = comments
                                     .Where(c => !string.IsNullOrEmpty(c.Label) && c.StoreId == store.Id)
                                     .SelectMany(c => c.Label.Split(','))
                                     .GroupBy(label => label.Trim())
                                     .ToDictionary(group => group.Key, group => group.Count()),
-                        isFavorited = mid.Count() > 0 ? true : false,
-                        placeId = store.StoreGoogleId,
-                        location = new { lat = store.XLocation, lng = store.YLocation },
-                        displayName = store.StoreName,
-                        photos = store.StorePictures,
-                        address = store.AddressCh,
-                        enAddress = store.AddressEn,
-                        book = store.ReserveUrl,
-                        budget = "NTD " + store.PriceStart + "~" + store.PriceEnd + " / Rp " + store.PriceStart * IDR + "~" + store.PriceEnd * IDR,
-                        phone = store.Phone,
-                        url = "",
-                        opening_hours = openingHours
-                    };
+                            isFavorited = mid.Count() > 0 ? true : false,
+                            placeId = store.StoreGoogleId,
+                            location = new { lat = store.XLocation, lng = store.YLocation },
+                            displayName = store.StoreName,
+                            photos = store.StorePictures,
+                            address = store.AddressCh,
+                            enAddress = store.AddressEn,
+                            book = store.ReserveUrl,
+                            budget = "NTD " + store.PriceStart + "~" + store.PriceEnd + " / Rp " + store.PriceStart * IDR + "~" + store.PriceEnd * IDR,
+                            phone = store.Phone,
+                            url = "",
+                            opening_hours = openingHours
+                        };
                         var response = new
                         {
                             statusCode = 200,
@@ -243,7 +248,7 @@ namespace Rocket6w6wH.Controllers
                 return InternalServerError(new Exception("詳細錯誤訊息", ex));
             }
         }
-        [HttpGet]
+        [HttpPost]
         [Route("api/stores/search")]
         public IHttpActionResult SearchStores([FromBody] SearchRequest request)
         {
@@ -291,6 +296,7 @@ namespace Rocket6w6wH.Controllers
                     {
                         var data = stores.Select(store => new
                         {
+                            id=store.Id,
                             placeId = store.StoreGoogleId,
                             displayName = store.StoreName,
                             photos = store.StorePictures,
@@ -333,7 +339,7 @@ namespace Rocket6w6wH.Controllers
                             .DefaultIfEmpty(0)
                             .Average(),
                             tags = comments
-                                    .Where(c => !string.IsNullOrEmpty(c.Label)&&c.StoreId== store.Id)
+                                    .Where(c => !string.IsNullOrEmpty(c.Label) && c.StoreId == store.Id)
                                     .SelectMany(c => c.Label.Split(','))
                                     .GroupBy(label => label.Trim())
                                     .ToDictionary(group => group.Key, group => group.Count()),
@@ -395,30 +401,79 @@ namespace Rocket6w6wH.Controllers
             }
         }
         [HttpGet]
-        [Route("collectshop/get/{id}")]
-        public IHttpActionResult collectshop(int id)
+        [Route("collectshop/get")]
+        public IHttpActionResult collectshop()
         {
             try
             {
-                var store = db.CollectStore.Where(c => c.MemberId == id).ToList();
-                var data = store.Select(s => new
+                var request = Request;
+                int? memberId = null;
+                if (request.Headers.Authorization == null || request.Headers.Authorization.Scheme != "Bearer")
                 {
-                    id = s.Id,
-                    group = s.Stores.StoreName,
+                    var response = new
+                    {
+                        statusCode = 200,
+                        status = true,
+                        message = "尚未登入",
+                    };
+                    return Ok(response);
+                }
+                try
+                {
+                    var jwtObject = JwtAuthUtil.GetToken(request.Headers.Authorization.Parameter);
+                    memberId = int.Parse(jwtObject["Id"].ToString());
+                }
+                catch
+                {
+                    var response = new
+                    {
+                        statusCode = 401,
+                        status = false,
+                        message = "Token 無效或已過期"
+                    };
+                    return Content(System.Net.HttpStatusCode.Unauthorized, response);
+                }
+                var stores = db.CollectStore.Where(c => c.MemberId == memberId).Include(c => c.Stores).ToList();
+                var data = stores.Select(store => new
+                {
+                    placeId = store.Stores.StoreGoogleId,
+                    displayName = store.Stores.StoreName,
+                    photos = store.Stores.StorePictures,
+                    starCount = store.Stores.StoreComments
+                                            .Where(m => m.StoreId == store.Id)
+                                            .Select(m => (double?)m.Stars)
+                                            .DefaultIfEmpty(0)
+                                            .Average(),
+                    tags = store.Stores.StoreComments
+                                                    .Where(c => !string.IsNullOrEmpty(c.Label) && c.StoreId == store.Id)
+                                                    .SelectMany(c => c.Label.Split(','))
+                                                    .GroupBy(label => label.Trim())
+                                                    .ToDictionary(group => group.Key, group => group.Count()),
+                    isAdvertise = store.Stores.IsAdvertise,
+                    isFavorited = store.Stores.CollectStores.Any(c => c.StoreId == store.Id && c.MemberId == memberId),
+                    reviewCount = store.Stores.StoreComments.Where(c => c.StoreId == store.Id).Count(),
+                    comments = store.Stores.StoreComments.Where(c => c.StoreId == store.Id).ToList(),
                 }).ToList();
-                var response = new
-                {
-                    statusCode = 200,
-                    status = true,
-                    message = "資料取得成功",
-                    data
-                };
+
                 if (data == null || data.Count == 0)
                 {
-                    return NotFound();
+                    var response = new
+                    {
+                        statusCode = 200,
+                        status = true,
+                        message = "用戶無收藏店家",
+                    };
+                    return Ok(response);
                 }
                 else
                 {
+                    var response = new
+                    {
+                        statusCode = 200,
+                        status = true,
+                        message = "資料取得成功",
+                        data
+                    };
                     return Ok(response);
                 }
             }
@@ -434,9 +489,33 @@ namespace Rocket6w6wH.Controllers
         {
             try
             {
+                var request = Request;
+                int? memberId = null;
+                if (request.Headers.Authorization == null || request.Headers.Authorization.Scheme != "Bearer")
+                {
+                    memberId = 0;
+                }
+                else
+                {
+                    try
+                    {
+                        var jwtObject = JwtAuthUtil.GetToken(request.Headers.Authorization.Parameter);
+                        memberId = int.Parse(jwtObject["Id"].ToString());
+                    }
+                    catch
+                    {
+                        var response = new
+                        {
+                            statusCode = 401,
+                            status = false,
+                            message = "Token 無效或已過期"
+                        };
+                        return Content(System.Net.HttpStatusCode.Unauthorized, response);
+                    }
+                }
                 using (var context = new Model())
                 {
-                    var storeComments = context.StoreComments.Where(m => m.StoreId == id).Include(m => m.Member).Include(m => m.CommentPictures).ToList();
+                    var storeComments = context.StoreComments.Where(m => m.StoreId == id).Include(m => m.Member).Include(m => m.CommentPictures).Include(m => m.CommentLikes).ToList();
                     var data = storeComments.Select(comment => new
                     {
                         commentID = comment.Id,
@@ -447,12 +526,12 @@ namespace Rocket6w6wH.Controllers
                         comment = comment.Comment,
                         photo = comment.CommentPictures,
                         replyCount = storeComments.Count(),
-                        starCount = 1,
+                        starCount = (int)Math.Round(storeComments.Select(m => m.Stars).DefaultIfEmpty(0).Average(), MidpointRounding.AwayFromZero),
                         postedAt = comment.CreateTime.ToString(),
-                        likeCount = 1,
-                        isLike = true,
-                        tags = 1,
-                        badge = "level1"
+                        likeCount = storeComments.Count(),
+                        isLike = comment.CommentLikes.Any(sc => sc.LikeUserId == memberId) ? true : false,
+                        tags = comment.Label,
+                        badge = comment.Member.Badge,
 
 
                     });

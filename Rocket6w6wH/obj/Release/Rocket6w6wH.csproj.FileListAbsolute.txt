@@ -293,7 +293,4 @@ C:\Users\HP\Desktop\火箭隊-backend\Project6w6wH\Rocket6w6wH\obj\Release\Rocke
 C:\Users\HP\Desktop\火箭隊-backend\Project6w6wH\Rocket6w6wH\obj\Release\Rocket6w6wH.dll
 C:\Users\HP\Desktop\火箭隊-backend\Project6w6wH\Rocket6w6wH\obj\Release\Rocket6w6wH.pdb
 C:\Users\HP\Desktop\火箭隊-backend\Project6w6wH\Rocket6w6wH\obj\Release\Rocket6w6wH.Migrations.update.resources
-C:\Users\HP\Desktop\火箭隊-backend\Project6w6wH\Rocket6w6wH\obj\Release\Rocket6w6wH.Migrations.addcollectstore.resources
-C:\Users\HP\Desktop\火箭隊-backend\Project6w6wH\Rocket6w6wH\obj\Release\Rocket6w6wH.Migrations.addcommentlike.resources
-C:\Users\HP\Desktop\火箭隊-backend\Project6w6wH\Rocket6w6wH\obj\Release\Rocket6w6wH.Migrations.addgender.resources
-C:\Users\HP\Desktop\火箭隊-backend\Project6w6wH\Rocket6w6wH\obj\Release\Rocket6w6wH.Migrations.addisadvertise.resources
+C:\Users\HP\Desktop\火箭隊-backend\Project6w6wH\Rocket6w6wH\obj\Release\Rocket6w6wH.Migrations.ReplyOnlyCode.resources

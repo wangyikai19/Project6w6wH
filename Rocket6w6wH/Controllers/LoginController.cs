@@ -136,6 +136,7 @@ namespace Rocket6w6wH.Controllers
                 message = "登入失敗,請再登入一次"
             });
         }
+
         public class MemberInfo
         {
             public string NickName { get; set; }

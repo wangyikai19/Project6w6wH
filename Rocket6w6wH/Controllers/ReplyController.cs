@@ -1,5 +1,6 @@
 ﻿using Microsoft.Ajax.Utilities;
 using Rocket6w6wH.Models;
+using Rocket6w6wH.Security;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Design;
@@ -8,6 +9,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Xml.Linq;
 using static Rocket6w6wH.Controllers.StoresController;
 
 namespace Rocket6w6wH.Controllers
@@ -16,19 +18,43 @@ namespace Rocket6w6wH.Controllers
     {
         private Model db = new Model();
         [HttpGet]
-        [Route("api/getreply")]
-        public IHttpActionResult GetReply([FromBody] SearchReply request)
+        [Route("api/getreply/{id}")]
+        public IHttpActionResult GetReply(int Id)
         {
             try
             {
                 using (var context = new Model())
                 {
-                    var commentid = request.CommentId;
-                    var userid = request.UserId;
-                    var replies = context.Reply.Where(c => c.CommentId == commentid).Include(m=>m.Member).ToList();
+                    var request = Request;
+                    int? memberId = null;
+                    if (request.Headers.Authorization == null || request.Headers.Authorization.Scheme != "Bearer")
+                    {
+                        memberId = 0;
+                    }
+                    else
+                    {
+                        try
+                        {
+                            var jwtObject = JwtAuthUtil.GetToken(request.Headers.Authorization.Parameter);
+                            memberId = int.Parse(jwtObject["Id"].ToString());
+                        }
+                        catch
+                        {
+                            var result = new
+                            {
+                                statusCode = 401,
+                                status = false,
+                                message = "Token 無效或已過期"
+                            };
+                            return Content(System.Net.HttpStatusCode.Unauthorized, result);
+                        }
+                    }
+                    var replies = context.Reply.Where(c => c.CommentId == Id).Include(m=>m.Member).Include(r=>r.StoreComments).ToList();
+                    var comment = context.StoreComments.FirstOrDefault(sc => sc.Id == Id);
                     var repliID= replies.Select(r => r.Id).ToList();
-                    var like = context.ReplyLike.Where(l => l.LikeUserId == userid && repliID.Contains(l.ReplyId)).Count();
-                    var data = replies.Select(r => new
+                    var replyLike = context.ReplyLike.ToList();
+                    var like = replyLike.Where(l =>  repliID.Contains(l.ReplyId)).Count();
+                    var reply = replies.Select(r => new
                     {
                         replyID = r.Id,
                         userID = r.ReplyUserId,
@@ -38,9 +64,27 @@ namespace Rocket6w6wH.Controllers
                         posterAt = r.CreateTime,
                         badge = r.Member?.Badge ?? null, // 空值處理
                         country = r.Member?.Country ?? null, // 空值處理
-                        likeCount = 1,
-                        isLike = like,
+                        likeCount = like,
+                        isLike = replyLike.Any(rl => rl.LikeUserId == memberId) ? true : false,
                     }).ToList();
+                    var data = new
+                    {
+                        commentId = comment.Id,
+                        userID = comment.MemberId,
+                        userName = comment.Member.Name,
+                        userPhoto = comment.Member.Photo,
+                        photos = comment.CommentPictures,
+                        starCount = comment.Stars,
+                        comment = comment.Comment,
+                        postAt = comment.CreateTime.ToString(),
+                        likeCount = like,
+                        isLike = comment.CommentLikes.Any(cl => cl.LikeUserId == memberId),
+                        tags = comment.Label,
+                        badge = comment.Member.Badge,
+                        country = comment.Member.Country,
+                        reply
+
+                    };
                     var response = new
                     {
                         statusCode = 200,
@@ -48,9 +92,16 @@ namespace Rocket6w6wH.Controllers
                         message = "資料取得成功",
                         data
                     };
-                    if (data == null || data.Count == 0)
+                    if (data == null)
                     {
-                        return NotFound(); // 如果沒有店家資料，返回 404
+                        var result = new
+                        {
+                            statusCode = 200,
+                            status = true,
+                            message = "此評論沒有留言",
+                            data
+                        };
+                        return Ok(result);
                     }
                     return Ok(response);
 
