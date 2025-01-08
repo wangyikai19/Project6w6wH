@@ -239,25 +239,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202501050452514_update.cs" />
-    <Compile Include="Migrations\202501050452514_update.Designer.cs">
-      <DependentUpon>202501050452514_update.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202501060754246_addcollectstore.cs" />
-    <Compile Include="Migrations\202501060754246_addcollectstore.Designer.cs">
-      <DependentUpon>202501060754246_addcollectstore.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202501060807578_addcommentlike.cs" />
-    <Compile Include="Migrations\202501060807578_addcommentlike.Designer.cs">
-      <DependentUpon>202501060807578_addcommentlike.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202501060836409_addgender.cs" />
-    <Compile Include="Migrations\202501060836409_addgender.Designer.cs">
-      <DependentUpon>202501060836409_addgender.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202501061506482_addisadvertise.cs" />
-    <Compile Include="Migrations\202501061506482_addisadvertise.Designer.cs">
-      <DependentUpon>202501061506482_addisadvertise.cs</DependentUpon>
+    <Compile Include="Migrations\202501080631403_newall.cs" />
+    <Compile Include="Migrations\202501080631403_newall.Designer.cs">
+      <DependentUpon>202501080631403_newall.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\City.cs" />
@@ -425,20 +409,8 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202501050452514_update.resx">
-      <DependentUpon>202501050452514_update.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202501060754246_addcollectstore.resx">
-      <DependentUpon>202501060754246_addcollectstore.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202501060807578_addcommentlike.resx">
-      <DependentUpon>202501060807578_addcommentlike.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202501060836409_addgender.resx">
-      <DependentUpon>202501060836409_addgender.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202501061506482_addisadvertise.resx">
-      <DependentUpon>202501061506482_addisadvertise.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202501080631403_newall.resx">
+      <DependentUpon>202501080631403_newall.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

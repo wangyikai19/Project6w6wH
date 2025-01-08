@@ -7,13 +7,13 @@ namespace Rocket6w6wH.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.5.1")]
-    public sealed partial class update : IMigrationMetadata
+    public sealed partial class newall : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(update));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(newall));
         
         string IMigrationMetadata.Id
         {
-            get { return "202501050452514_update"; }
+            get { return "202501080631403_newall"; }
         }
         
         string IMigrationMetadata.Source
