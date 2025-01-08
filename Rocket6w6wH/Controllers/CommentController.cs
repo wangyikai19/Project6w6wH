@@ -24,130 +24,143 @@ namespace Rocket6w6wH.Controllers
         [Route("api/reviews")]
         public IHttpActionResult PostComments()
         {
-
-            var httpRequest = HttpContext.Current.Request; //從HttpRequest.Files取得前端傳來圖片
-
-            string storeid = httpRequest.Form["placeID"];
-            int memberid = int.Parse(httpRequest.Form["userID"]);
-            string comment = httpRequest.Form["comment"];
-            int starcount = int.Parse(httpRequest.Form["starCount"]);
-            string[] tags = JsonConvert.DeserializeObject<string[]>(httpRequest.Form["tags"]);
-
-            int storeId = db.Stores.Where(m => m.StoreGoogleId == storeid).Select(x => x.Id).FirstOrDefault();
-            //var duplicateComment = db.Stores.FirstOrDefault(m => m.StoreGoogleId == storeid).StoreComments.Select(x => x.MemberId); 盡量不要將FirstOrDefault()放在where位置
-            var duplicateComment = db.Stores.Where(m => m.StoreGoogleId == storeid).SelectMany(m => m.StoreComments.Select(x => x.MemberId));
-            if (duplicateComment.Contains(memberid))
+            try 
             {
-                int commentIdForCommentPictures = db.StoreComments.Where(m => m.StoreId == storeId && m.MemberId == memberid).Select(x => x.Id).FirstOrDefault();
-                List<int> tagslist = new List<int>();
-                var searchConditionTable = db.SearchCondition.ToList();
-                foreach (var tag in tags)
-                {
-                    int labelId = searchConditionTable.Where(m => m.MVal == tag).Select(x => x.Id).FirstOrDefault();
-                    tagslist.Add(labelId);
-                };
-                string labelstr = JsonConvert.SerializeObject(tagslist);
+                var httpRequest = HttpContext.Current.Request; //從HttpRequest.Files取得前端傳來圖片
 
-                var reSC = db.StoreComments.FirstOrDefault(s => s.Id == commentIdForCommentPictures);
-                if (reSC != null)
-                {
-                    reSC.Comment = comment;
-                    reSC.ModifyTime = DateTime.Now;
-                    reSC.Stars = starcount;
-                    reSC.Label = labelstr;
-                    db.SaveChanges();
-                }
+                string storeid = httpRequest.Form["placeID"];
+                int memberid = int.Parse(httpRequest.Form["userID"]);
+                string comment = httpRequest.Form["comment"];
+                int starcount = int.Parse(httpRequest.Form["starCount"]);
+                string[] tags = JsonConvert.DeserializeObject<string[]>(httpRequest.Form["tags"]);
 
-                //var picturesToDelete = db.CommentPictures.Where(c => c.CommentId == commentIdForCommentPictures).ToList();
-                //db.CommentPictures.RemoveRange(picturesToDelete);
-                //db.SaveChanges();
-                var response = new
-                {
-                    statusCode = 200,
-                    status = true,
-                    message = "評論修改成功"
-                };
-
-                return Ok(response);
-
-            }
-            else
-            {
-                List<int> tagslist = new List<int>();
-                var searchConditionTable = db.SearchCondition.ToList();
-                foreach (var tag in tags)
-                {
-                    int labelId = searchConditionTable.Where(m => m.MVal == tag).Select(x => x.Id).FirstOrDefault();
-                    tagslist.Add(labelId);
-                };
-                string labelstr = JsonConvert.SerializeObject(tagslist);//將標籤string陣列轉換為標籤DB的id再存成list存入DB
-
-
-                var sc = new StoreComments
-                {
-                    StoreId = storeId,
-                    MemberId = memberid,
-                    Comment = comment,
-                    CreateTime = DateTime.Now,
-                    Stars = starcount,
-                    Label = labelstr
-                };
-                db.StoreComments.Add(sc);
-                db.SaveChanges();
-
-                if (httpRequest.Files.Count > 0)
+                int storeId = db.Stores.Where(m => m.StoreGoogleId == storeid).Select(x => x.Id).FirstOrDefault();
+                //var duplicateComment = db.Stores.FirstOrDefault(m => m.StoreGoogleId == storeid).StoreComments.Select(x => x.MemberId); 盡量不要將FirstOrDefault()放在where位置
+                var duplicateComment = db.Stores.Where(m => m.StoreGoogleId == storeid).SelectMany(m => m.StoreComments.Select(x => x.MemberId));
+                if (duplicateComment.Contains(memberid))
                 {
                     int commentIdForCommentPictures = db.StoreComments.Where(m => m.StoreId == storeId && m.MemberId == memberid).Select(x => x.Id).FirstOrDefault();
-                    var uploadedFiles = httpRequest.Files;
-                    string uploadPath = ConfigurationManager.AppSettings["UploadPath"];
-                    string[] allowedExtensions = { ".jpg", ".png" };
-                    foreach (string fileKey in uploadedFiles)
+                    List<int> tagslist = new List<int>();
+                    var searchConditionTable = db.SearchCondition.ToList();
+                    foreach (var tag in tags)
                     {
-                        var file = uploadedFiles[fileKey];
-                        if (file != null && file.ContentLength > 0)
+                        int labelId = searchConditionTable.Where(m => m.MVal == tag).Select(x => x.Id).FirstOrDefault();
+                        tagslist.Add(labelId);
+                    };
+                    string labelstr = JsonConvert.SerializeObject(tagslist);
+
+                    var reSC = db.StoreComments.FirstOrDefault(s => s.Id == commentIdForCommentPictures);
+                    if (reSC != null)
+                    {
+                        reSC.Comment = comment;
+                        reSC.ModifyTime = DateTime.Now;
+                        reSC.Stars = starcount;
+                        reSC.Label = labelstr;
+                        db.SaveChanges();
+                    }
+
+                    //var picturesToDelete = db.CommentPictures.Where(c => c.CommentId == commentIdForCommentPictures).ToList();
+                    //db.CommentPictures.RemoveRange(picturesToDelete);
+                    //db.SaveChanges();
+                    var response = new
+                    {
+                        statusCode = 200,
+                        status = true,
+                        message = "評論修改成功"
+                    };
+
+                    return Ok(response);
+
+                }
+                else
+                {
+                    List<int> tagslist = new List<int>();
+                    var searchConditionTable = db.SearchCondition.ToList();
+                    foreach (var tag in tags)
+                    {
+                        int labelId = searchConditionTable.Where(m => m.MVal == tag).Select(x => x.Id).FirstOrDefault();
+                        tagslist.Add(labelId);
+                    };
+                    string labelstr = JsonConvert.SerializeObject(tagslist);//將標籤string陣列轉換為標籤DB的id再存成list存入DB
+
+
+                    var sc = new StoreComments
+                    {
+                        StoreId = storeId,
+                        MemberId = memberid,
+                        Comment = comment,
+                        CreateTime = DateTime.Now,
+                        Stars = starcount,
+                        Label = labelstr
+                    };
+                    db.StoreComments.Add(sc);
+                    db.SaveChanges();
+
+                    if (httpRequest.Files.Count > 0)
+                    {
+                        int commentIdForCommentPictures = db.StoreComments.Where(m => m.StoreId == storeId && m.MemberId == memberid).Select(x => x.Id).FirstOrDefault();
+                        var uploadedFiles = httpRequest.Files;
+                        string uploadPath = ConfigurationManager.AppSettings["UploadPath"];
+                        string[] allowedExtensions = { ".jpg", ".png" };
+                        foreach (string fileKey in uploadedFiles)
                         {
-                            string fileExtension = Path.GetExtension(file.FileName).ToLower();
-                            if (!allowedExtensions.Contains(fileExtension)) continue; //檢查檔案類型
-
-                            const int maxFileSizeInBytes = 1 * 1024 * 1024; // 1MB
-                            if (file.ContentLength > maxFileSizeInBytes)
+                            var file = uploadedFiles[fileKey];
+                            if (file != null && file.ContentLength > 0)
                             {
-                                continue; // 檔案太大，跳過
+                                string fileExtension = Path.GetExtension(file.FileName).ToLower();
+                                if (!allowedExtensions.Contains(fileExtension)) continue; //檢查檔案類型
+
+                                const int maxFileSizeInBytes = 1 * 1024 * 1024; // 1MB
+                                if (file.ContentLength > maxFileSizeInBytes)
+                                {
+                                    continue; // 檔案太大，跳過
+                                }
+
+                                string fileName = Path.GetFileName(file.FileName);
+                                string savePath = Path.Combine(uploadPath, fileName);
+
+                                if (File.Exists(savePath))
+                                {
+                                    string fileNameWithoutExtension = Path.GetFileNameWithoutExtension(fileName);
+                                    string timestamp = DateTime.Now.ToString("yyyyMMddHHmmss");
+                                    fileName = $"{fileNameWithoutExtension}_{timestamp}{fileExtension}";
+                                    savePath = Path.Combine(uploadPath, fileName);
+                                }
+
+                                file.SaveAs(savePath);
+
+                                var cp = new CommentPictures
+                                {
+                                    CommentId = commentIdForCommentPictures,
+                                    PictureUrl = fileName,
+                                    CreateTime = DateTime.Now
+                                };
+                                db.CommentPictures.Add(cp);
                             }
-
-                            string fileName = Path.GetFileName(file.FileName);
-                            string savePath = Path.Combine(uploadPath, fileName);
-
-                            if (File.Exists(savePath))
-                            {
-                                string fileNameWithoutExtension = Path.GetFileNameWithoutExtension(fileName);
-                                string timestamp = DateTime.Now.ToString("yyyyMMddHHmmss");
-                                fileName = $"{fileNameWithoutExtension}_{timestamp}{fileExtension}";
-                                savePath = Path.Combine(uploadPath, fileName);
-                            }
-
-                            file.SaveAs(savePath);
-
-                            var cp = new CommentPictures
-                            {
-                                CommentId = commentIdForCommentPictures,
-                                PictureUrl = fileName,
-                                CreateTime = DateTime.Now
-                            };
-                            db.CommentPictures.Add(cp);
                         }
                     }
+                    db.SaveChanges();
+
+                    var response = new
+                    {
+                        statusCode = 200,
+                        status = true,
+                        message = "評論成功"
+                    };
+
+                    return Ok(response);
                 }
-                db.SaveChanges();
-
-                var response = new
+            }
+            catch (Exception ex)
+            {
+                var errorResponse = new
                 {
-                    statusCode = 200,
-                    status = true,
-                    message = "評論成功"
+                    statusCode = 500,
+                    status = false,
+                    message = "伺服器錯誤，請稍後再試",
+                    error = ex.Message
                 };
-
-                return Ok(response);
+                return Content(System.Net.HttpStatusCode.InternalServerError, errorResponse);
             }
         }
 
@@ -157,39 +170,52 @@ namespace Rocket6w6wH.Controllers
         [Route("api/comments/delete")]
         public IHttpActionResult CommentsDelete([FromBody] forComment Commentvalue)
         {
-            var Comment = db.StoreComments.Find(Commentvalue.commentID);
-            var PictureUrllist = db.CommentPictures.Where(m => m.CommentId == Commentvalue.commentID).Select(x => x.PictureUrl).ToList();
-            if (Comment == null)
+            try 
             {
-                return Ok(new
+                var Comment = db.StoreComments.Find(Commentvalue.commentID);
+                var PictureUrllist = db.CommentPictures.Where(m => m.CommentId == Commentvalue.commentID).Select(x => x.PictureUrl).ToList();
+                if (Comment == null)
                 {
-                    statusCode = 404,
-                    status = false,
-                    message = "無此評論"
-                });
-            }
-            else if (PictureUrllist.Any())
-            {
-                string uploadPath = ConfigurationManager.AppSettings["UploadPath"];
-                foreach (string PictureName in PictureUrllist)
-                {
-                    string savePath = Path.Combine(uploadPath, PictureName);
-                    if (File.Exists(savePath))
+                    return Ok(new
                     {
-                        File.Delete(savePath); // 刪除舊檔案
+                        statusCode = 404,
+                        status = false,
+                        message = "無此評論"
+                    });
+                }
+                else if (PictureUrllist.Any())
+                {
+                    string uploadPath = ConfigurationManager.AppSettings["UploadPath"];
+                    foreach (string PictureName in PictureUrllist)
+                    {
+                        string savePath = Path.Combine(uploadPath, PictureName);
+                        if (File.Exists(savePath))
+                        {
+                            File.Delete(savePath); // 刪除舊檔案
+                        }
                     }
                 }
+
+                db.StoreComments.Remove(Comment);
+                db.SaveChanges();
+                return Ok(new
+                {
+                    statusCode = 200,
+                    status = true,
+                    message = "刪除成功！"
+                });
             }
-
-            db.StoreComments.Remove(Comment);
-            db.SaveChanges();
-            return Ok(new
+            catch (Exception ex)
             {
-                statusCode = 200,
-                status = true,
-                message = "刪除成功！"
-            });
-
+                var errorResponse = new
+                {
+                    statusCode = 500,
+                    status = false,
+                    message = "伺服器錯誤，請稍後再試",
+                    error = ex.Message
+                };
+                return Content(System.Net.HttpStatusCode.InternalServerError, errorResponse);
+            }
         }
 
         [HttpPost]
@@ -213,6 +239,18 @@ namespace Rocket6w6wH.Controllers
 
             int Commentid = duplicateComment.FirstOrDefault().Id;
             var cps = db.CommentPictures.Where(c => c.CommentId == Commentid).Select(x => x.PictureUrl).ToList();
+            List<string> cpslist = new List<string>();
+            if (cps.Any()) 
+            {
+                string uploadPath = ConfigurationManager.AppSettings["UploadPath"];
+                foreach (string PictureName in cps)
+                {
+                    string savePath = Path.Combine(uploadPath, PictureName);
+                    cpslist.Add(savePath);
+                }
+            }
+
+
             var searchConditionTable = db.SearchCondition.ToList();
             List<string> tagslist = new List<string>();
             int[] LabelIDlist = JsonConvert.DeserializeObject<int[]>(duplicateComment.FirstOrDefault().Label);
@@ -230,7 +268,7 @@ namespace Rocket6w6wH.Controllers
                 comment = duplicateComment.FirstOrDefault()?.Comment,
                 starCount = duplicateComment.FirstOrDefault().Stars,
                 tags = tagslist,
-                Pictureslist = cps.Any() ? cps : null
+                Pictureslist = (cpslist.Count > 0) ? cpslist : null
             };
 
             return Ok(fc);

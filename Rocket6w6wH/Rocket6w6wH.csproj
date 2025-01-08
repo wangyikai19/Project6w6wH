@@ -242,6 +242,10 @@
     <Compile Include="Migrations\202501050452514_update.Designer.cs">
       <DependentUpon>202501050452514_update.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202501061200433_AddReplynewcolumn.cs" />
+    <Compile Include="Migrations\202501061200433_AddReplynewcolumn.Designer.cs">
+      <DependentUpon>202501061200433_AddReplynewcolumn.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\City.cs" />
     <Compile Include="Models\CommentPictures.cs" />
@@ -408,6 +412,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202501050452514_update.resx">
       <DependentUpon>202501050452514_update.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202501061200433_AddReplynewcolumn.resx">
+      <DependentUpon>202501061200433_AddReplynewcolumn.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
