@@ -4,10 +4,13 @@ using Rocket6w6wH.Security;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Design;
+using System.Configuration;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Web;
 using System.Web.Http;
 using System.Xml.Linq;
 using static Rocket6w6wH.Controllers.StoresController;
@@ -123,19 +126,32 @@ namespace Rocket6w6wH.Controllers
         }
 
         [HttpPost]
+        [JwtAuthFilter]
         [Route("api/comments/reply")]
-        public IHttpActionResult Postreply([FromBody] forreply replyvalue)
+        public IHttpActionResult Postreply([FromBody] Forreply replyvalue)
         {
             try
             {
+                int userId = (int)HttpContext.Current.Items["memberid"];
                 var now = DateTime.Now;
                 string withMilliseconds = now.ToString("yyyy-MM-dd!HH:mm:ss.fff");
 
+                var Comment = db.StoreComments.Find(replyvalue.CommentId);
+                if (Comment == null)
+                {
+                    return Ok(new
+                    {
+                        statusCode = 404,
+                        status = false,
+                        message = "無此評論"
+                    });
+                }
+
                 var ry = new Reply
                 {
-                    CommentId = replyvalue.commentID,
-                    ReplyUserId = replyvalue.userID,
-                    ReplyContent = replyvalue.comment,
+                    CommentId = replyvalue.CommentId,
+                    ReplyUserId = userId,
+                    ReplyContent = replyvalue.Comment,
                     CreateTime = DateTime.Now,
                     ReplyOnlyCode = withMilliseconds
                 };
@@ -144,29 +160,37 @@ namespace Rocket6w6wH.Controllers
 
                 var repliesWithMembers = db.Reply.Where(m => m.ReplyOnlyCode == withMilliseconds).Include(m => m.Member).ToList();
 
-                data datadictionary = null;
+                var dataList = new List<object>();
                 foreach (var detail in repliesWithMembers)
                 {
-                    datadictionary = new data
+                    string savePath = null;
+                    if (detail.Member.Photo != null)
                     {
-                        replyID = detail.Id,
-                        userID = detail.ReplyUserId,
+                        string userPath = ConfigurationManager.AppSettings["UserPhoto"];
+                        savePath = Path.Combine(userPath, detail.Member.Photo);
+                    }
+
+                    var datadictionary = new
+                    {
+                        replyId = detail.Id,
+                        userId = detail.ReplyUserId,
                         userName = detail.Member.Name,
-                        userPhoto = detail.Member.Photo,
+                        userPhoto = savePath == null ? null : savePath,
                         comment = detail.ReplyContent,
                         postedAt = detail.CreateTime.Value.ToString("yyyy-MM-dd HH:mm:ss.fff"),
-                        badge = null,
+                        badge = "level1",
                         likeCount = 0,
-                        isLike = true
+                        isLike = false,
                     };
+                    dataList.Add(datadictionary);
                 }
 
                 var response = new
                 {
                     statusCode = 200,
                     status = true,
-                    message = "評論成功",
-                    data = datadictionary
+                    message = "留言成功",
+                    data = dataList[0]
                 };
 
                 return Ok(response);
@@ -186,12 +210,14 @@ namespace Rocket6w6wH.Controllers
 
 
         [HttpPost]
+        [JwtAuthFilter]
         [Route("api/messages/delete")]
-        public IHttpActionResult Deletemessages([FromBody] data replyvalue)
+        public IHttpActionResult Deletemessages([FromBody] Forreply replyvalue)
         {
             try
             {
-                var messages = db.Reply.Find(replyvalue.replyID);
+                int userId = (int)HttpContext.Current.Items["memberid"];
+                var messages = db.Reply.Find(replyvalue.ReplyId);
 
                 if (messages == null)
                 {
@@ -200,6 +226,17 @@ namespace Rocket6w6wH.Controllers
                         statusCode = 404,
                         status = false,
                         message = "無此留言"
+                    });
+                }
+
+                int rId = db.Reply.Where(m => m.Id == replyvalue.ReplyId).Select(x => x.ReplyUserId).FirstOrDefault();
+                if (userId != rId)
+                {
+                    return Ok(new
+                    {
+                        statusCode = 404,
+                        status = false,
+                        message = "用戶無此留言"
                     });
                 }
 
@@ -225,11 +262,11 @@ namespace Rocket6w6wH.Controllers
             }
         }
 
-        public class forreply
+        public class Forreply
         {
-            public int commentID { get; set; }
-            public int userID { get; set; }
-            public string comment { get; set; }
+            public int CommentId { get; set; }
+            public string Comment { get; set; }
+            public int ReplyId { get; set; }
         }
 
         public class data

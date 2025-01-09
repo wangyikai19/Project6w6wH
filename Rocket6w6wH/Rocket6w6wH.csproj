@@ -232,6 +232,7 @@
     <Compile Include="Controllers\ConfigsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\MemberController.cs" />
     <Compile Include="Controllers\ReplyController.cs" />
     <Compile Include="Controllers\SearchConditionsController.cs" />
     <Compile Include="Controllers\StoresController.cs" />

@@ -246,10 +246,13 @@ namespace Rocket6w6wH.Controllers
                 var cps = db.CommentPictures.Where(c => c.CommentId == Commentid).Select(x => x.PictureUrl).ToList();
                 string uploadPath = ConfigurationManager.AppSettings["UploadPath"];
                 List<string> plist = new List<string>();
-                foreach (string PictureName in cps)
+                if (cps.Any())
                 {
-                    string savePath = Path.Combine(uploadPath, PictureName);
-                    plist.Add(savePath);
+                    foreach (string PictureName in cps)
+                    {
+                        string savePath = Path.Combine(uploadPath, PictureName);
+                        plist.Add(savePath);
+                    }
                 }
 
 
@@ -260,7 +263,7 @@ namespace Rocket6w6wH.Controllers
                     comment = duplicateComment.FirstOrDefault()?.Comment,
                     starCount = duplicateComment.FirstOrDefault().Stars,
                     tags = tags,
-                    Pictureslist = plist.Any() ? plist : null
+                    commentPictures = cps.Any() ? plist : cps,
                 };
 
                 return Ok(fc);

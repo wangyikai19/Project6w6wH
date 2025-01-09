@@ -55,6 +55,9 @@ namespace Rocket6w6wH.Models
         public string StoreTags { get; set; }
         [Display(Name = "是否為贊助店家")]
         public bool IsAdvertise { get; set; }
+        [Display(Name = "觸及人數")]
+        public int? Engagement { get; set; }
+
 
         public DateTime? CreateTime { get; set; }
 
