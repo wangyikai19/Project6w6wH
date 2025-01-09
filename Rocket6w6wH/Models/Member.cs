@@ -8,7 +8,7 @@ namespace Rocket6w6wH.Models
     using Newtonsoft.Json;
 
     public partial class Member
-    {
+    {//456123
         [Key]
         [Display(Name = "½s¸¹")]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
