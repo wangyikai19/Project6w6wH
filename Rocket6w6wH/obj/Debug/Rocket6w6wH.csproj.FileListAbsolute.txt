@@ -310,3 +310,4 @@ C:\Users\HP\Desktop\火箭隊-backend\Project6w6wH\Rocket6w6wH\obj\Debug\Rocket6
 C:\Users\HP\Desktop\火箭隊-backend\Project6w6wH\Rocket6w6wH\obj\Debug\Rocket6w6wH.Migrations.update.resources
 C:\Users\HP\Desktop\火箭隊-backend\Project6w6wH\Rocket6w6wH\obj\Debug\Rocket6w6wH.csproj.GenerateResource.cache
 C:\Users\HP\Desktop\火箭隊-backend\Project6w6wH\Rocket6w6wH\obj\Debug\Rocket6w6wH.Migrations.ReplyOnlyCode.resources
+C:\Users\HP\Desktop\火箭隊-backend\Project6w6wH\Rocket6w6wH\obj\Debug\Rocket6w6wH.Migrations.SearchRecord.resources

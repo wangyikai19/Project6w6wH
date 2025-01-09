@@ -247,6 +247,10 @@
     <Compile Include="Migrations\202501080353195_ReplyOnlyCode.Designer.cs">
       <DependentUpon>202501080353195_ReplyOnlyCode.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202501090719374_SearchRecord.cs" />
+    <Compile Include="Migrations\202501090719374_SearchRecord.Designer.cs">
+      <DependentUpon>202501090719374_SearchRecord.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\City.cs" />
     <Compile Include="Models\CollectStore.cs" />
@@ -258,6 +262,7 @@
     <Compile Include="Models\Reply.cs" />
     <Compile Include="Models\ReplyLike.cs" />
     <Compile Include="Models\SearchCondition.cs" />
+    <Compile Include="Models\SearchRecord.cs" />
     <Compile Include="Models\StoreComments.cs" />
     <Compile Include="Models\StorePictures.cs" />
     <Compile Include="Models\Stores.cs" />
@@ -418,6 +423,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202501080353195_ReplyOnlyCode.resx">
       <DependentUpon>202501080353195_ReplyOnlyCode.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202501090719374_SearchRecord.resx">
+      <DependentUpon>202501090719374_SearchRecord.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

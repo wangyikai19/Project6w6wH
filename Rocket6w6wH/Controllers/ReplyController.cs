@@ -54,10 +54,11 @@ namespace Rocket6w6wH.Controllers
                     var repliID= replies.Select(r => r.Id).ToList();
                     var replyLike = context.ReplyLike.ToList();
                     var like = replyLike.Where(l =>  repliID.Contains(l.ReplyId)).Count();
+                    var searchCondition = context.SearchCondition.ToList();
                     var reply = replies.Select(r => new
                     {
-                        replyID = r.Id,
-                        userID = r.ReplyUserId,
+                        replyId = r.Id,
+                        userId = r.ReplyUserId,
                         userName = r.Member?.Name ?? null, // 空值處理
                         userPhoto = r.Member?.Photo ?? null, // 空值處理
                         comment = r.ReplyContent,
@@ -70,7 +71,7 @@ namespace Rocket6w6wH.Controllers
                     var data = new
                     {
                         commentId = comment.Id,
-                        userID = comment.MemberId,
+                        userId = comment.MemberId,
                         userName = comment.Member.Name,
                         userPhoto = comment.Member.Photo,
                         photos = comment.CommentPictures,
@@ -79,7 +80,10 @@ namespace Rocket6w6wH.Controllers
                         postAt = comment.CreateTime.ToString(),
                         likeCount = like,
                         isLike = comment.CommentLikes.Any(cl => cl.LikeUserId == memberId),
-                        tags = comment.Label,
+                        tags = searchCondition.Where(condition => comment.Label.Split(',')
+                       .Select(tag => int.Parse(tag.Trim())).ToList()
+                       .Contains(condition.Id)).Select(condition => condition.MVal)
+                        .ToList(),
                         badge = comment.Member.Badge,
                         country = comment.Member.Country,
                         reply

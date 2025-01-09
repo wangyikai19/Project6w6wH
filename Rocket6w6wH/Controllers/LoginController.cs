@@ -15,7 +15,7 @@ namespace Rocket6w6wH.Controllers
     {
         private Model db = new Model();
 
-        [HttpGet]
+        [HttpPost]
         [Route("user/register")]
         public IHttpActionResult Register([FromBody] MemberInfo request)
         {
@@ -33,10 +33,10 @@ namespace Rocket6w6wH.Controllers
             {
                 var member = new Member
                 {
-                    Name = request.NickName,
+                    Name = request.UserName,
                     Email = request.Email,
                     Country = request.Country,
-                    Photo = request.Picture,
+                    Photo = request.UserPhoto,
                     Gender = request.Gender,
                     Birthday = request.BirthDay,
                 };
@@ -139,10 +139,10 @@ namespace Rocket6w6wH.Controllers
 
         public class MemberInfo
         {
-            public string NickName { get; set; }
+            public string UserName { get; set; }
             public string Email { get; set; }
             public string Country { get; set; }
-            public string Picture { get; set; }
+            public string UserPhoto { get; set; }
             public int Gender { get; set; }
             public DateTime BirthDay { get; set; }
         }

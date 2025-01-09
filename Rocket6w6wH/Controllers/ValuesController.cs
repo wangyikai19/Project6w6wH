@@ -51,23 +51,51 @@ namespace Rocket6w6wH.Controllers
                 return Ok(errorStr);
             }
 
-            // 取出請求內容，解密 JwtToken 取出資料
-            var userToken = JwtAuthUtil.GetToken(Request.Headers.Authorization.Parameter);
-
-            JwtAuthUtil jwtAuthUtil = new JwtAuthUtil();
-            // ExpRefreshToken() 生成刷新效期 JwtToken 用法
-
-            string jwtToken = jwtAuthUtil.ExpRefreshToken(userToken);
-            // 處理完請求內容後，順便送出刷新效期的 JwtToken
-
-            var responseStr = new
+            // 檢查是否帶入 Authorization 標頭
+            var authHeader = Request.Headers.Authorization;
+            if (authHeader == null || string.IsNullOrEmpty(authHeader.Parameter) || authHeader.Scheme != "Bearer")
             {
-                statusCode = "200",
-                status = true,
-                message = "用戶已登入"
-            };
+                var errorStr = new
+                {
+                    statusCode = "401",
+                    status = false,
+                    message = "未提供有效的 Token"
+                };
 
-            return Ok(responseStr);
+                return Ok(errorStr);
+            }
+
+            try
+            {
+                // 取出並驗證 JwtToken
+                var userToken = JwtAuthUtil.GetToken(authHeader.Parameter);
+
+                // 假設 JwtAuthUtil 驗證成功並返回有效的用戶資料
+                JwtAuthUtil jwtAuthUtil = new JwtAuthUtil();
+                string jwtToken = jwtAuthUtil.ExpRefreshToken(userToken); // 生成刷新效期的 Token
+
+                var responseStr = new
+                {
+                    statusCode = "200",
+                    status = true,
+                    message = "用戶已登入",
+                    jwtToken // 將新的 JwtToken 包含於回應中
+                };
+
+                return Ok(responseStr);
+            }
+            catch (Exception ex)
+            {
+                var errorStr = new
+                {
+                    statusCode = "401",
+                    status = false,
+                    message = "無效的 Token",
+                    error = ex.Message
+                };
+
+                return Ok(errorStr);
+            }
 
         }
         public class authRequest
