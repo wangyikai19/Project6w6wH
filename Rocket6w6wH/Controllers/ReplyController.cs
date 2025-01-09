@@ -65,7 +65,7 @@ namespace Rocket6w6wH.Controllers
                         userName = r.Member?.Name ?? null, // 空值處理
                         userPhoto = r.Member?.Photo ?? null, // 空值處理
                         comment = r.ReplyContent,
-                        posterAt = r.CreateTime,
+                        createTime = r.CreateTime,
                         badge = r.Member?.Badge ?? null, // 空值處理
                         country = r.Member?.Country ?? null, // 空值處理
                         likeCount = like,
@@ -80,7 +80,7 @@ namespace Rocket6w6wH.Controllers
                         photos = comment.CommentPictures,
                         starCount = comment.Stars,
                         comment = comment.Comment,
-                        postAt = comment.CreateTime.ToString(),
+                        createTime = comment.CreateTime.ToString(),
                         likeCount = like,
                         isLike = comment.CommentLikes.Any(cl => cl.LikeUserId == memberId),
                         tags = searchCondition.Where(condition => comment.Label.Split(',')
@@ -177,7 +177,7 @@ namespace Rocket6w6wH.Controllers
                         userName = detail.Member.Name,
                         userPhoto = savePath == null ? null : savePath,
                         comment = detail.ReplyContent,
-                        postedAt = detail.CreateTime.Value.ToString("yyyy-MM-dd HH:mm:ss.fff"),
+                        createTime = detail.CreateTime.Value.ToString("yyyy-MM-dd HH:mm:ss.fff"),
                         badge = "level1",
                         likeCount = 0,
                         isLike = false,
@@ -276,7 +276,7 @@ namespace Rocket6w6wH.Controllers
             public string userName { get; set; }
             public string userPhoto { get; set; }
             public string comment { get; set; }
-            public string postedAt { get; set; }
+            public string createTime { get; set; }
             public string badge { get; set; }
             public int likeCount { get; set; }
             public bool isLike { get; set; }

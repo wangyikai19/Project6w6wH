@@ -710,7 +710,7 @@ namespace Rocket6w6wH.Controllers
                         photo = comment.CommentPictures,
                         replyCount = storeComments.Count(),
                         starCount = (int)Math.Round(storeComments.Select(m => m.Stars).DefaultIfEmpty(0).Average(), MidpointRounding.AwayFromZero),
-                        postedAt = comment.CreateTime.ToString(),
+                        createTime = comment.CreateTime.ToString(),
                         likeCount = storeComments.Count(),
                         isLike = comment.CommentLikes.Any(sc => sc.LikeUserId == memberId) ? true : false,
                         tags = searchCondition.Where(condition => comment.Label.Split(',')
