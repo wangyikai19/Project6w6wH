@@ -608,7 +608,9 @@ namespace Rocket6w6wH.Controllers
                     return Content(System.Net.HttpStatusCode.Unauthorized, response);
                 }
                 var collectstores = db.CollectStore.Where(c => c.MemberId == memberId).Include(c => c.Stores).ToList();
+                var comments = db.StoreComments.ToList();
                 var replies = db.Reply.ToList();
+                var search = db.SearchCondition.ToList();
                 var data = collectstores.Select(cs => new
                 {
                     id = cs.Stores.Id,
@@ -623,13 +625,22 @@ namespace Rocket6w6wH.Controllers
                     isFavorited = cs.Stores.CollectStores.Any(c => c.StoreId == cs.Id && c.MemberId == memberId),
                     reviewCount = cs.Stores.StoreComments.Where(c => c.StoreId == cs.Id).Count(),
                     repliesCount = replies.Where(r => r.StoreComments.StoreId == cs.Id).Count(),
-                    tags = cs.Stores.StoreComments
-                                                    .Where(c => !string.IsNullOrEmpty(c.Label) && c.StoreId == cs.Id)
-                                                    .SelectMany(c => c.Label.Split(','))
-                                                    .GroupBy(label => label.Trim())
-                                                    .ToDictionary(group => group.Key, group => group.Count()),
+                    tags = comments
+                            .Where(c => !string.IsNullOrEmpty(c.Label) && c.StoreId == cs.StoreId)
+                            .SelectMany(c => c.Label.Split(','))
+                            .GroupBy(label => label.Trim())
+                            .Select(group =>
+                            {
+                                var searchItem = search.FirstOrDefault(s => s.Id.ToString() == group.Key);
+                                return new
+                                {
+                                    tagName = searchItem.MVal,
+                                    count = group.Count()
+                                };
+                            })
+                            .ToList(),
 
-                    comments = cs.Stores.StoreComments.Where(c => c.StoreId == cs.Id).Select(c => new
+                    comments = cs.Stores.StoreComments.Where(c => c.StoreId == cs.StoreId).Select(c => new
                     {
                         commentId = c.Id,
                         userPhoto = c.Member.Photo,
@@ -707,7 +718,7 @@ namespace Rocket6w6wH.Controllers
                         userPhoto = comment.Member.Photo,
                         country = comment.Member.Country,
                         comment = comment.Comment,
-                        photo = comment.CommentPictures,
+                        photos = comment.CommentPictures,
                         replyCount = storeComments.Count(),
                         starCount = (int)Math.Round(storeComments.Select(m => m.Stars).DefaultIfEmpty(0).Average(), MidpointRounding.AwayFromZero),
                         createTime = comment.CreateTime.ToString(),
