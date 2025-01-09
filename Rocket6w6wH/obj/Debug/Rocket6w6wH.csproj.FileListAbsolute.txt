@@ -456,3 +456,4 @@ C:\Users\male7\source\repos\Project6w6wH\Rocket6w6wH\obj\Debug\Rocket6w6wH.cspro
 C:\Users\male7\source\repos\Project6w6wH\Rocket6w6wH\obj\Debug\Rocket6w.F4A9CC56.Up2Date
 C:\Users\male7\source\repos\Project6w6wH\Rocket6w6wH\obj\Debug\Rocket6w6wH.Migrations.newall.resources
 C:\Users\male7\source\repos\Project6w6wH\Rocket6w6wH\obj\Debug\Rocket6w6wH.csproj.GenerateResource.cache
+C:\Users\male7\source\repos\Project6w6wH\Rocket6w6wH\obj\Debug\Rocket6w6wH.Migrations.addstores_engagement.resources

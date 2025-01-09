@@ -4,11 +4,16 @@ using Rocket6w6wH.Models;
 using Rocket6w6wH.Security;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
+using System.Configuration;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
+using System.Data.Entity.ModelConfiguration.Configuration;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Runtime.Remoting.Contexts;
 using System.Security.Principal;
 using System.Web;
 using System.Web.Http;
@@ -165,18 +170,19 @@ namespace Rocket6w6wH.Controllers
                 using (var context = new Model())
                 {
                     var store = context.Stores.FirstOrDefault(m => m.Id == storeid);
-                    var mid = context.CollectStore.Where(c=>c.StoreId== storeid & c.MemberId== memberId);
-                    if (store != null) { 
-                    var storeStars = context.StoreComments.Where(m => m.StoreId == storeid).ToList();
-                    var comments = context.StoreComments.ToList();
-                    string idr = context.Configs.FirstOrDefault(i => i.Group == "IDR").MVal;
-                    int IDR = int.Parse(idr);
-                    var averageStars = 0;
-                    if (storeStars.Count > 0)
+                    var mid = context.CollectStore.Where(c => c.StoreId == storeid & c.MemberId == memberId);
+                    if (store != null)
                     {
-                        averageStars = (int)Math.Round(storeStars.Average(m => m.Stars));
-                    }
-                    var openingHours = JsonConvert.DeserializeObject<Dictionary<string, string>>(store.BusinessHours);
+                        var storeStars = context.StoreComments.Where(m => m.StoreId == storeid).ToList();
+                        var comments = context.StoreComments.ToList();
+                        string idr = context.Configs.FirstOrDefault(i => i.Group == "IDR").MVal;
+                        int IDR = int.Parse(idr);
+                        var averageStars = 0;
+                        if (storeStars.Count > 0)
+                        {
+                            averageStars = (int)Math.Round(storeStars.Average(m => m.Stars));
+                        }
+                        var openingHours = JsonConvert.DeserializeObject<Dictionary<string, string>>(store.BusinessHours);
                         var tags = comments
                                     .Where(c => !string.IsNullOrEmpty(c.Label) && c.StoreId == store.Id)
                                     .SelectMany(c => c.Label.Split(','))
@@ -189,33 +195,33 @@ namespace Rocket6w6wH.Controllers
                             tags = new Dictionary<string, int>(); // 空的字典
                         }
                         var data = new
-                    {
-                        advertise = new
                         {
-                            photo = "",
-                            url = "",
-                            title = "",
-                            slogan = ""
-                        },
-                        starCount = averageStars,
-                        tags = comments
+                            advertise = new
+                            {
+                                photo = "",
+                                url = "",
+                                title = "",
+                                slogan = ""
+                            },
+                            starCount = averageStars,
+                            tags = comments
                                     .Where(c => !string.IsNullOrEmpty(c.Label) && c.StoreId == store.Id)
                                     .SelectMany(c => c.Label.Split(','))
                                     .GroupBy(label => label.Trim())
                                     .ToDictionary(group => group.Key, group => group.Count()),
-                        isFavorited = mid.Count() > 0 ? true : false,
-                        placeId = store.StoreGoogleId,
-                        location = new { lat = store.XLocation, lng = store.YLocation },
-                        displayName = store.StoreName,
-                        photos = store.StorePictures,
-                        address = store.AddressCh,
-                        enAddress = store.AddressEn,
-                        book = store.ReserveUrl,
-                        budget = "NTD " + store.PriceStart + "~" + store.PriceEnd + " / Rp " + store.PriceStart * IDR + "~" + store.PriceEnd * IDR,
-                        phone = store.Phone,
-                        url = "",
-                        opening_hours = openingHours
-                    };
+                            isFavorited = mid.Count() > 0 ? true : false,
+                            placeId = store.StoreGoogleId,
+                            location = new { lat = store.XLocation, lng = store.YLocation },
+                            displayName = store.StoreName,
+                            photos = store.StorePictures,
+                            address = store.AddressCh,
+                            enAddress = store.AddressEn,
+                            book = store.ReserveUrl,
+                            budget = "NTD " + store.PriceStart + "~" + store.PriceEnd + " / Rp " + store.PriceStart * IDR + "~" + store.PriceEnd * IDR,
+                            phone = store.Phone,
+                            url = "",
+                            opening_hours = openingHours
+                        };
                         var response = new
                         {
                             statusCode = 200,
@@ -333,7 +339,7 @@ namespace Rocket6w6wH.Controllers
                             .DefaultIfEmpty(0)
                             .Average(),
                             tags = comments
-                                    .Where(c => !string.IsNullOrEmpty(c.Label)&&c.StoreId== store.Id)
+                                    .Where(c => !string.IsNullOrEmpty(c.Label) && c.StoreId == store.Id)
                                     .SelectMany(c => c.Label.Split(','))
                                     .GroupBy(label => label.Trim())
                                     .ToDictionary(group => group.Key, group => group.Count()),
@@ -487,6 +493,85 @@ namespace Rocket6w6wH.Controllers
                 // 捕獲異常並返回具體錯誤訊息
                 return InternalServerError(new Exception("詳細錯誤訊息", ex));
             }
+        }
+
+        [HttpGet]
+        [Route("api/stores/tops")]
+        public IHttpActionResult Gettopstores()
+        {
+            var topComments = db.Stores
+                .OrderByDescending(store => store.Engagement)
+                .Take(4)
+                .Select(store => new
+                {
+                    Store = store,
+                    Comment = db.StoreComments
+                    .Where(comment => comment.StoreId == store.Id)
+                    .OrderByDescending(comment => db.CommentLike
+                    .Count(like => like.CommentId == comment.Id))
+                    .FirstOrDefault(),
+                    AverageStars = db.StoreComments
+                    .Where(comment => comment.StoreId == store.Id)
+                    .Select(comment => comment.Stars)
+                    .DefaultIfEmpty(0)
+                    .Average()
+                })
+                .Select(x => new
+                {
+                    Store = x.Store,
+                    Comment = x.Comment != null ? x.Comment : null,
+                    MemberPhoto = x.Comment != null
+                    ? db.Member
+                    .Where(member => member.Id == x.Comment.MemberId)
+                    .Select(member => member.Photo)
+                    .FirstOrDefault()
+                    : null,
+                    Sp = db.StorePictures
+                    .Where(StorePictures => StorePictures.StoreId == x.Store.Id)
+                    .Select(StorePictures => StorePictures.PictureUrl)
+                    .FirstOrDefault(),
+                    AverageStars = x.AverageStars
+                })
+                .ToList();
+
+            var dataList = new List<object>();
+            List<string> storelist = new List<string>();
+
+            string userPath = ConfigurationManager.AppSettings["UserPhoto"];
+            string storePath = ConfigurationManager.AppSettings["StorePhoto"];
+
+            foreach (var item in topComments)
+            {
+                string[] storeSavePath = item.Sp == null ? new string[] { } : new string[] { Path.Combine(storePath, item.Sp) };
+                string userSavePath = item.MemberPhoto == null ? null : Path.Combine(userPath, item.MemberPhoto);
+
+                var commentData = item.Comment != null ? new
+                {
+                    commitId = item.Comment.Id,
+                    userPhoto = userSavePath,
+                    content = item.Comment.Comment
+                }
+                : null;
+
+
+                var datadictionary = new
+                {
+                    placeId = item.Store.StoreGoogleId,
+                    displayName = item.Store.StoreName,
+                    photos = storeSavePath,
+                    starCount = item.AverageStars == 0 ? 0 : item.AverageStars,
+                    comment = commentData
+                };
+                dataList.Add(datadictionary);
+            }
+
+            return Ok(new
+            {
+                statusCode = 200,
+                status = true,
+                message = "隨機熱門店家搜尋成功!",
+                data = dataList
+            });
         }
 
         public class SearchRequest

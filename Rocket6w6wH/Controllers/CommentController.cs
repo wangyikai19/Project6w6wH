@@ -43,9 +43,9 @@ namespace Rocket6w6wH.Controllers
                 var duplicateComment = db.Stores.Where(m => m.Id == storeid).SelectMany(m => m.StoreComments.Select(x => x.MemberId));
                 if (duplicateComment.Contains(memberid))
                 {
-                    int commentIdForCommentPictures = db.StoreComments.Where(m => m.StoreId == storeid && m.MemberId == memberid).Select(x => x.Id).FirstOrDefault();
+                    int commentId = db.StoreComments.Where(m => m.StoreId == storeid && m.MemberId == memberid).Select(x => x.Id).FirstOrDefault();
 
-                    var reSC = db.StoreComments.FirstOrDefault(s => s.Id == commentIdForCommentPictures);
+                    var reSC = db.StoreComments.FirstOrDefault(s => s.Id == commentId);
                     if (reSC != null)
                     {
                         reSC.Comment = comment;
@@ -246,12 +246,14 @@ namespace Rocket6w6wH.Controllers
                 var cps = db.CommentPictures.Where(c => c.CommentId == Commentid).Select(x => x.PictureUrl).ToList();
                 string uploadPath = ConfigurationManager.AppSettings["UploadPath"];
                 List<string> plist = new List<string>();
-                foreach (string PictureName in cps)
+                if (cps.Any()) 
                 {
-                    string savePath = Path.Combine(uploadPath, PictureName);
-                    plist.Add(savePath);
+                    foreach (string PictureName in cps)
+                    {
+                        string savePath = Path.Combine(uploadPath, PictureName);
+                        plist.Add(savePath);
+                    }
                 }
-
 
                 var fc = new 
                 {
@@ -260,7 +262,7 @@ namespace Rocket6w6wH.Controllers
                     comment = duplicateComment.FirstOrDefault()?.Comment,
                     starCount = duplicateComment.FirstOrDefault().Stars,
                     tags = tags,
-                    Pictureslist = plist.Any() ? plist : null
+                    commentPictures = cps.Any() ? plist : cps,
                 };
 
                 return Ok(fc);
