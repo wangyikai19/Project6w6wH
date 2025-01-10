@@ -177,14 +177,26 @@ namespace Rocket6w6wH.Controllers
                         userName = detail.Member.Name,
                         userPhoto = savePath == null ? null : savePath,
                         comment = detail.ReplyContent,
-                        createTime = detail.CreateTime.Value.ToString("yyyy-MM-dd HH:mm:ss.fff"),
+                        postedAt = detail.CreateTime.Value.ToString("yyyy-MM-dd HH:mm:ss.fff"),
                         badge = "level1",
                         likeCount = 0,
                         isLike = false,
                     };
                     dataList.Add(datadictionary);
+
+                    var ny = new Notify
+                    {
+                        ReplyId = detail.Id,
+                        ReplyUserId = detail.ReplyUserId,
+                        CommentId = replyvalue.CommentId,
+                        CommentUserId = Comment.MemberId,
+                        Check = 0,
+                        CreateTime = DateTime.Now,
+                    };
+                    db.Notify.Add(ny);
                 }
 
+                db.SaveChanges();
                 var response = new
                 {
                     statusCode = 200,
