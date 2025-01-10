@@ -394,7 +394,7 @@ namespace Rocket6w6wH.Controllers
                     var cityName = context.City.FirstOrDefault(m => m.Id == cityId)?.CountryName ?? string.Empty;
                     string tag = string.Join(",", request.Tags);
                     var comments = context.StoreComments.Include(c => c.Member).Include(c => c.CommentLikes).ToList();
-                    var replies = context.Reply.Include(r => r.Member).ToList();
+                    var replies = context.Reply.Include(r => r.Member).Include(r=>r.StoreComments).ToList();
                     var replyLike = context.ReplyLike.ToList();
                     var stores = context.Stores.Include(s => s.StoreComments).ToList();
                     var collects = context.CollectStore.ToList();
@@ -454,6 +454,7 @@ namespace Rocket6w6wH.Controllers
                             isAdvertise = store.IsAdvertise,
                             isFavorited = collects.Any(c => c.StoreId == store.Id && c.MemberId == memberId),
                             reviewCount = comments.Where(c => c.StoreId == store.Id).Count(),
+                            replyCount=replies.Where(r=>r.StoreComments.StoreId == store.Id).Count(),
                             tags = comments
                             .Where(c => !string.IsNullOrEmpty(c.Label) && c.StoreId == store.Id)
                             .SelectMany(c => c.Label.Split(','))
@@ -501,6 +502,7 @@ namespace Rocket6w6wH.Controllers
                             isAdvertise = store.IsAdvertise,
                             isFavorited = collects.Any(c => c.StoreId == store.Id && c.MemberId == memberId),
                             reviewCount = comments.Where(c => c.StoreId == store.Id).Count(),
+                            replyCount = replies.Where(r => r.StoreComments.StoreId == store.Id).Count(),
                             tags = comments
                             .Where(c => !string.IsNullOrEmpty(c.Label) && c.StoreId == store.Id)
                             .SelectMany(c => c.Label.Split(','))
