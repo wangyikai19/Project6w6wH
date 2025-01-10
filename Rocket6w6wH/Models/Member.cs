@@ -44,5 +44,7 @@ namespace Rocket6w6wH.Models
         public virtual ICollection<Reply> Reply { get; set; }//反向導航屬性
         public virtual ICollection<ReplyLike> ReplyLike { get; set; }//反向導航屬性
         public virtual ICollection<CommentLike> CommentLike { get; set; }//反向導航屬性
+        public virtual ICollection<Follow> Follow { get; set; }//反向導航屬性
+        public virtual ICollection<CommnetReport> CommnetReports { get; set; }//反向導航屬性
     }
 }

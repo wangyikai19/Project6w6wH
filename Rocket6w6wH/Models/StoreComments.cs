@@ -42,5 +42,6 @@ namespace Rocket6w6wH.Models
         public virtual ICollection<CommentPictures> CommentPictures { get; set; }
         public virtual ICollection<Reply> Reply { get; set; }
         public virtual ICollection<CommentLike> CommentLikes { get; set; }
+        public virtual ICollection<CommnetReport> CommnetReports { get; set; }
     }
 }
