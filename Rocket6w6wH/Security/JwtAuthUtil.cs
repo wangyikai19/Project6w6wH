@@ -33,7 +33,7 @@ namespace Rocket6w6wH.Security
                 { "Id", id },
                 { "Email", user.Email },
                 { "Country", user.Country },
-                { "Exp", DateTime.Now.AddMinutes(30).ToString() } // JwtToken 時效設定 30 分
+                { "Exp", DateTime.Now.AddHours(24).ToString() } // JwtToken 時效設定 30 分
             };
 
             // 產生 JwtToken

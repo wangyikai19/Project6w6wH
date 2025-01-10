@@ -79,7 +79,7 @@ namespace Rocket6w6wH.Controllers
                     statusCode = "200",
                     status = true,
                     message = "用戶已登入",
-                    jwtToken // 將新的 JwtToken 包含於回應中
+                    //jwtToken // 將新的 JwtToken 包含於回應中
                 };
 
                 return Ok(responseStr);
