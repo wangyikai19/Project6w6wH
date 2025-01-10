@@ -36,7 +36,7 @@ namespace Rocket6w6wH.Models
         public DateTime? ModifyTime { get; set; }
         public string ReplyOnlyCode { get; set; }
         public virtual ICollection<ReplyLike> ReplyLike { get; set; }
-        public virtual ICollection<notify> notify { get; set; }
+        public virtual ICollection<Notify> notify { get; set; }
         public Reply()
         {
             ReplyLike = new HashSet<ReplyLike>();
