@@ -98,20 +98,18 @@ namespace Rocket6w6wH.Controllers
                 .Take(10)
                 .ToList();
 
-
-            string numstr = "";
+            List<int> Labelnumbers = new List<int>();
 
             foreach (var item in homeLabel) 
             {
-                numstr += item.Labelid + ",";
+                Labelnumbers.Add(item.Labelid);
             }
-            numstr = numstr.TrimEnd(',');
             return Ok(new
             {
                 statusCode = 200,
                 status = true,
                 message = "成功取得標籤",
-                data = numstr
+                data = Labelnumbers
             });
         }
     }

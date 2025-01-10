@@ -184,7 +184,7 @@ namespace Rocket6w6wH.Controllers
                     };
                     dataList.Add(datadictionary);
 
-                    var ny = new notify
+                    var ny = new Notify
                     {
                         ReplyId = detail.Id,
                         ReplyUserId = detail.ReplyUserId,
@@ -193,7 +193,7 @@ namespace Rocket6w6wH.Controllers
                         Check = 0,
                         CreateTime = DateTime.Now,
                     };
-                    db.notify.Add(ny);
+                    db.Notify.Add(ny);
                 }
 
                 db.SaveChanges();

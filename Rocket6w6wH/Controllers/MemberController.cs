@@ -14,6 +14,7 @@ using Microsoft.Ajax.Utilities;
 using Rocket6w6wH.Models;
 using Rocket6w6wH.Security;
 using static Rocket6w6wH.Controllers.CommentController;
+using static Rocket6w6wH.Controllers.ReplyController;
 
 namespace Rocket6w6wH.Controllers
 {
@@ -85,5 +86,29 @@ namespace Rocket6w6wH.Controllers
         }
 
 
+        //[HttpGet]
+        //[JwtAuthFilter]
+        //[Route("api/notify/count")]
+        //public IHttpActionResult Getnotify()
+        //{
+        //    try
+        //    {
+        //        int userId = (int)HttpContext.Current.Items["memberid"];
+
+        //        var Membernotify = db.Notify.Where(n => n.Id == userId).Select(x => );
+
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        var errorResponse = new
+        //        {
+        //            statusCode = 500,
+        //            status = false,
+        //            message = "伺服器錯誤，請稍後再試",
+        //            error = ex.Message
+        //        };
+        //        return Content(System.Net.HttpStatusCode.InternalServerError, errorResponse);
+        //    }
+        //}
     }
 }

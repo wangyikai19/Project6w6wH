@@ -1,12 +1,7 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\male7\\source\\repos\\Project6w6wH\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{F457148B-291B-4F16-9BA8-8B62519F6031}|Rocket6w6wH\\Rocket6w6wH.csproj|c:\\users\\male7\\source\\repos\\project6w6wh\\rocket6w6wh\\controllers\\storescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F457148B-291B-4F16-9BA8-8B62519F6031}|Rocket6w6wH\\Rocket6w6wH.csproj|solutionrelative:rocket6w6wh\\controllers\\storescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    }
-  ],
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -14,7 +9,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": -1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -31,19 +26,6 @@
             {
               "$type": "Bookmark",
               "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "StoresController.cs",
-              "DocumentMoniker": "C:\\Users\\male7\\source\\repos\\Project6w6wH\\Rocket6w6wH\\Controllers\\StoresController.cs",
-              "RelativeDocumentMoniker": "Rocket6w6wH\\Controllers\\StoresController.cs",
-              "ToolTip": "C:\\Users\\male7\\source\\repos\\Project6w6wH\\Rocket6w6wH\\Controllers\\StoresController.cs",
-              "RelativeToolTip": "Rocket6w6wH\\Controllers\\StoresController.cs",
-              "ViewState": "AgIAAPECAAAAAAAAAAAwwAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-10T02:56:56.493Z",
-              "EditorCaption": ""
             }
           ]
         }

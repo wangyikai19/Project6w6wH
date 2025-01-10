@@ -3,8 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\male7\\source\\repos\\Project6w6wH\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{F457148B-291B-4F16-9BA8-8B62519F6031}|Rocket6w6wH\\Rocket6w6wH.csproj|c:\\users\\male7\\source\\repos\\project6w6wh\\rocket6w6wh\\controllers\\storescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F457148B-291B-4F16-9BA8-8B62519F6031}|Rocket6w6wH\\Rocket6w6wH.csproj|solutionrelative:rocket6w6wh\\controllers\\storescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F457148B-291B-4F16-9BA8-8B62519F6031}|Rocket6w6wH\\Rocket6w6wH.csproj|c:\\users\\male7\\source\\repos\\project6w6wh\\rocket6w6wh\\controllers\\commentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F457148B-291B-4F16-9BA8-8B62519F6031}|Rocket6w6wH\\Rocket6w6wH.csproj|solutionrelative:rocket6w6wh\\controllers\\commentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F457148B-291B-4F16-9BA8-8B62519F6031}|Rocket6w6wH\\Rocket6w6wH.csproj|c:\\users\\male7\\source\\repos\\project6w6wh\\rocket6w6wh\\controllers\\membercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F457148B-291B-4F16-9BA8-8B62519F6031}|Rocket6w6wH\\Rocket6w6wH.csproj|solutionrelative:rocket6w6wh\\controllers\\membercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -35,14 +39,27 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "StoresController.cs",
-              "DocumentMoniker": "C:\\Users\\male7\\source\\repos\\Project6w6wH\\Rocket6w6wH\\Controllers\\StoresController.cs",
-              "RelativeDocumentMoniker": "Rocket6w6wH\\Controllers\\StoresController.cs",
-              "ToolTip": "C:\\Users\\male7\\source\\repos\\Project6w6wH\\Rocket6w6wH\\Controllers\\StoresController.cs",
-              "RelativeToolTip": "Rocket6w6wH\\Controllers\\StoresController.cs",
-              "ViewState": "AgIAAPECAAAAAAAAAAAwwAAAAAAAAAAAAAAAAA==",
+              "Title": "CommentController.cs",
+              "DocumentMoniker": "C:\\Users\\male7\\source\\repos\\Project6w6wH\\Rocket6w6wH\\Controllers\\CommentController.cs",
+              "RelativeDocumentMoniker": "Rocket6w6wH\\Controllers\\CommentController.cs",
+              "ToolTip": "C:\\Users\\male7\\source\\repos\\Project6w6wH\\Rocket6w6wH\\Controllers\\CommentController.cs",
+              "RelativeToolTip": "Rocket6w6wH\\Controllers\\CommentController.cs",
+              "ViewState": "AgIAACABAAAAAAAAAAAAAB4BAAAjAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-10T02:56:56.493Z",
+              "WhenOpened": "2025-01-10T07:19:49.155Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "MemberController.cs",
+              "DocumentMoniker": "C:\\Users\\male7\\source\\repos\\Project6w6wH\\Rocket6w6wH\\Controllers\\MemberController.cs",
+              "RelativeDocumentMoniker": "Rocket6w6wH\\Controllers\\MemberController.cs",
+              "ToolTip": "C:\\Users\\male7\\source\\repos\\Project6w6wH\\Rocket6w6wH\\Controllers\\MemberController.cs",
+              "RelativeToolTip": "Rocket6w6wH\\Controllers\\MemberController.cs",
+              "ViewState": "AgIAAGEAAAAAAAAAAAAIwG8AAAALAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-10T06:58:39.876Z",
               "EditorCaption": ""
             }
           ]

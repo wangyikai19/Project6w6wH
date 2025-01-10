@@ -7,7 +7,7 @@ using System.Web;
 using Newtonsoft.Json;
 namespace Rocket6w6wH.Models
 {
-    public class notify
+    public class Notify
     {
         [Key]
         [Display(Name = "編號")]

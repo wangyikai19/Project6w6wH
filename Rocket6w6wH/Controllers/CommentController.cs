@@ -14,6 +14,7 @@ using System.Net.Http;
 using System.Security.Principal;
 using System.Web;
 using System.Web.Http;
+using System.Web.UI.WebControls;
 using static Rocket6w6wH.Controllers.CommentController;
 
 namespace Rocket6w6wH.Controllers
@@ -35,10 +36,21 @@ namespace Rocket6w6wH.Controllers
 
                 int storeid = int.Parse(httpRequest.Form["placeID"]);
                 int memberid = userId;
-                string comment = httpRequest.Form["comment"];
+                string comment = httpRequest.Form["comment"] != null ? httpRequest.Form["comment"] : null;
                 int starcount = int.Parse(httpRequest.Form["starCount"]);
                 string tags = httpRequest.Form["tags"];
 
+
+                var storesID = db.Stores.Find(storeid);
+                if (storesID == null)
+                {
+                    return Ok(new
+                    {
+                        statusCode = 404,
+                        status = false,
+                        message = "無此店家"
+                    });
+                }
 
                 var duplicateComment = db.Stores.Where(m => m.Id == storeid).SelectMany(m => m.StoreComments.Select(x => x.MemberId));
                 if (duplicateComment.Contains(memberid))
@@ -96,7 +108,7 @@ namespace Rocket6w6wH.Controllers
                                 string fileExtension = Path.GetExtension(file.FileName).ToLower();
                                 if (!allowedExtensions.Contains(fileExtension)) continue; //檢查檔案類型
 
-                                const int maxFileSizeInBytes = 1 * 1024 * 1024; // 1MB
+                                const int maxFileSizeInBytes = 20 * 1024 * 1024; // 1MB
                                 if (file.ContentLength > maxFileSizeInBytes)
                                 {
                                     continue; // 檔案太大，跳過
@@ -243,6 +255,15 @@ namespace Rocket6w6wH.Controllers
 
                 int Commentid = duplicateComment.FirstOrDefault().Id;
                 string tags = duplicateComment.FirstOrDefault().Label;
+
+                List<int> tagslist = new List<int>();
+
+                string[] tagsstrlist = tags.Split(','); 
+                foreach (var tag in tagsstrlist) 
+                {
+                    tagslist.Add(int.Parse(tag));
+                }
+
                 var cps = db.CommentPictures.Where(c => c.CommentId == Commentid).Select(x => x.PictureUrl).ToList();
                 string uploadPath = ConfigurationManager.AppSettings["UploadPath"];
                 List<string> plist = new List<string>();
@@ -256,17 +277,24 @@ namespace Rocket6w6wH.Controllers
                 }
 
 
+
                 var fc = new
                 {
                     storeId = Commentvalue.StoreId,
                     userId = userId,
                     comment = duplicateComment.FirstOrDefault()?.Comment,
                     starCount = duplicateComment.FirstOrDefault().Stars,
-                    tags = tags,
+                    tags = tagslist,
                     commentPictures = cps.Any() ? plist : cps,
                 };
 
-                return Ok(fc);
+                return Ok(new
+                {
+                    statusCode = 200,
+                    status = true,
+                    message = "已評論過",
+                    data = fc
+                });
             }
             catch (Exception ex)
             {
