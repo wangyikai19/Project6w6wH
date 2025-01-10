@@ -5,11 +5,13 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.UI.WebControls;
 
 namespace Rocket6w6wH.Controllers
 {
     public class SearchConditionsController : ApiController
     {
+        private Model db = new Model();
         // GET: api/SearchConditions
         public IEnumerable<string> Get()
         {
@@ -23,12 +25,12 @@ namespace Rocket6w6wH.Controllers
         }
 
         // POST: api/SearchConditions
-        public void Post([FromBody]string value)
+        public void Post([FromBody] string value)
         {
         }
 
         // PUT: api/SearchConditions/5
-        public void Put(int id, [FromBody]string value)
+        public void Put(int id, [FromBody] string value)
         {
         }
 
@@ -75,6 +77,42 @@ namespace Rocket6w6wH.Controllers
                 // 捕獲異常並返回具體錯誤訊息
                 return InternalServerError(new Exception("詳細錯誤訊息", ex));
             }
+        }
+
+        [HttpGet]
+        [Route("api/homepage/marquee")]
+        public IHttpActionResult GethomeLabel()
+        {
+
+            var homeLabel = db.SearchRecord
+                .GroupBy(r => r.Label)
+                .Select(g => new 
+                {   Label = g.Key, 
+                    Count = g.Count(),
+                    Labelid = db.SearchCondition
+                    .Where(sc => sc.MVal == g.Key)
+                    .Select(sc => sc.Id)
+                    .FirstOrDefault()
+                })
+                .OrderByDescending(x => x.Count)
+                .Take(10)
+                .ToList();
+
+
+            string numstr = "";
+
+            foreach (var item in homeLabel) 
+            {
+                numstr += item.Labelid + ",";
+            }
+            numstr = numstr.TrimEnd(',');
+            return Ok(new
+            {
+                statusCode = 200,
+                status = true,
+                message = "成功取得標籤",
+                data = numstr
+            });
         }
     }
 }

@@ -240,17 +240,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202501050452514_update.cs" />
-    <Compile Include="Migrations\202501050452514_update.Designer.cs">
-      <DependentUpon>202501050452514_update.cs</DependentUpon>
+    <Compile Include="Migrations\202501091438286_addallnew.cs" />
+    <Compile Include="Migrations\202501091438286_addallnew.Designer.cs">
+      <DependentUpon>202501091438286_addallnew.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202501080353195_ReplyOnlyCode.cs" />
-    <Compile Include="Migrations\202501080353195_ReplyOnlyCode.Designer.cs">
-      <DependentUpon>202501080353195_ReplyOnlyCode.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202501090719374_SearchRecord.cs" />
-    <Compile Include="Migrations\202501090719374_SearchRecord.Designer.cs">
-      <DependentUpon>202501090719374_SearchRecord.cs</DependentUpon>
+    <Compile Include="Migrations\202501091652334_addnotify.cs" />
+    <Compile Include="Migrations\202501091652334_addnotify.Designer.cs">
+      <DependentUpon>202501091652334_addnotify.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\City.cs" />
@@ -260,6 +256,7 @@
     <Compile Include="Models\Configs.cs" />
     <Compile Include="Models\Member.cs" />
     <Compile Include="Models\Model.cs" />
+    <Compile Include="Models\notify.cs" />
     <Compile Include="Models\Reply.cs" />
     <Compile Include="Models\ReplyLike.cs" />
     <Compile Include="Models\SearchCondition.cs" />
@@ -419,14 +416,11 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202501050452514_update.resx">
-      <DependentUpon>202501050452514_update.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202501091438286_addallnew.resx">
+      <DependentUpon>202501091438286_addallnew.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202501080353195_ReplyOnlyCode.resx">
-      <DependentUpon>202501080353195_ReplyOnlyCode.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202501090719374_SearchRecord.resx">
-      <DependentUpon>202501090719374_SearchRecord.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202501091652334_addnotify.resx">
+      <DependentUpon>202501091652334_addnotify.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -7,13 +7,13 @@ namespace Rocket6w6wH.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.5.1")]
-    public sealed partial class SearchRecord : IMigrationMetadata
+    public sealed partial class addnotify : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(SearchRecord));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(addnotify));
         
         string IMigrationMetadata.Id
         {
-            get { return "202501090719374_SearchRecord"; }
+            get { return "202501091652334_addnotify"; }
         }
         
         string IMigrationMetadata.Source

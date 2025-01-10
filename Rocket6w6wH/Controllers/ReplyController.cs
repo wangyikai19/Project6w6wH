@@ -183,8 +183,20 @@ namespace Rocket6w6wH.Controllers
                         isLike = false,
                     };
                     dataList.Add(datadictionary);
+
+                    var ny = new notify
+                    {
+                        ReplyId = detail.Id,
+                        ReplyUserId = detail.ReplyUserId,
+                        CommentId = replyvalue.CommentId,
+                        CommentUserId = Comment.MemberId,
+                        Check = 0,
+                        CreateTime = DateTime.Now,
+                    };
+                    db.notify.Add(ny);
                 }
 
+                db.SaveChanges();
                 var response = new
                 {
                     statusCode = 200,
@@ -267,19 +279,6 @@ namespace Rocket6w6wH.Controllers
             public int CommentId { get; set; }
             public string Comment { get; set; }
             public int ReplyId { get; set; }
-        }
-
-        public class data
-        {
-            public int replyID { get; set; }
-            public int userID { get; set; }
-            public string userName { get; set; }
-            public string userPhoto { get; set; }
-            public string comment { get; set; }
-            public string postedAt { get; set; }
-            public string badge { get; set; }
-            public int likeCount { get; set; }
-            public bool isLike { get; set; }
         }
 
     }

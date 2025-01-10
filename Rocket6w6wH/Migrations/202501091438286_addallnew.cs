@@ -3,7 +3,7 @@
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class SearchRecord : DbMigration
+    public partial class addallnew : DbMigration
     {
         public override void Up()
         {

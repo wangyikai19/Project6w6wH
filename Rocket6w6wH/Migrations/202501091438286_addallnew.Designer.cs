@@ -7,13 +7,13 @@ namespace Rocket6w6wH.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.5.1")]
-    public sealed partial class ReplyOnlyCode : IMigrationMetadata
+    public sealed partial class addallnew : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(ReplyOnlyCode));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(addallnew));
         
         string IMigrationMetadata.Id
         {
-            get { return "202501080353195_ReplyOnlyCode"; }
+            get { return "202501091438286_addallnew"; }
         }
         
         string IMigrationMetadata.Source
